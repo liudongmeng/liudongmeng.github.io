@@ -2,6 +2,7 @@
 title: 从头开始搭建hadoop环境
 date: 2017-01-27 15:45:24
 tags: [linux,ubuntu,hadoop,hdfs,yarn]
+category: [笔记,hadoop]
 ---
 放假在家没什么事情，从头整理一下之前搭的环境，有些当时看起来似是而非的东西现在看起来就明确了很多，为了部落……
 <!--more-->

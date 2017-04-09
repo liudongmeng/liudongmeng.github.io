@@ -2,6 +2,7 @@
 title: OpenTSDB服务器启动操作
 date: 2017-01-06 12:08:08
 tags:
+category: [笔记,OpenTSDB]
 ---
 公司的虚拟机关了之后OpenTSDB的时候各种报错……折腾了一会儿才想起来基础的Hadoop/Zookeeper/HBase服务貌似没起……
 启动服务的命令记一下，虽然搞了两次大概记住了

@@ -2,7 +2,7 @@
 title: python开发环境的一些配置
 date: 2017-04-08 16:44:27
 tags: ['python']
-category: ['笔记','python','环境配置']
+category: [笔记,'python','环境配置']
 ---
 本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄
 结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下

@@ -2,6 +2,7 @@
 title: maven淘宝镜像配置
 date: 2017-01-14 15:05:20
 tags:
+category: [笔记,maven]
 ---
 修改`settings.xml`文件中的镜像配置即可
 ```xml

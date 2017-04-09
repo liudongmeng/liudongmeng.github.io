@@ -2,6 +2,7 @@
 title: SparkStreaming
 date: 2017-01-12 22:45:21
 tags: [Spark,Streaming,Spark Streaming]
+category: [笔记,Spark,SparkStreaming]
 ---
 公司是想通过类似MySQL->Yelp->Kafka->Spark Streaming->OpenTSDB的结构搭一套框架,然后一步一步来吧
 每个部分单独实现接口肯定是没问题的,无非就是Java/Python/WebAPI或者其他接口封装一下,问题是怎么用最简单的方法把这一套串起来

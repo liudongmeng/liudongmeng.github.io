@@ -2,6 +2,7 @@
 title: flume
 date: 2017-01-23 22:37:14
 tags:
+category: [笔记,flume]
 ---
 
 最近上班状态特别不好……磨磨蹭蹭也算是搭了一下flume

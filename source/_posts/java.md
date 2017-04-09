@@ -1,7 +1,8 @@
 ---
-title: java
+title: java写入OpenTSDB
 date: 2017-01-07 22:20:02
 tags:
+category: [笔记,OpenTSDB]
 ---
 ***
 

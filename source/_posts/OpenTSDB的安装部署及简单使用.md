@@ -2,6 +2,7 @@
 title: OpenTSDB的安装部署及简单使用
 date: 2017-01-28 15:46:16
 tags: [OpenTSDB,HBase]
+category: [笔记,OpenTSDB]
 ---
 部署流程，其实部署东西大都不难，呵呵。
 <!--more-->
