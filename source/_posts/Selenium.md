@@ -57,8 +57,11 @@ Successfully installed selenium-3.4.3
 #### 下载WebDriver
 
 ##### ChromeDriver
+
 [chrome-driver][chrome-driver]
-* 截止目前最新的windows版本的driver的[下载地址](https://chromedriver.storage.googleapis.com/2.9/chromedriver_win32.zip "chromedriver_win32.zip")
+
+* 截止目前最新的windows版本的driver的[下载地址](https://chromedriver.storage.googleapis.com/2.29/chromedriver_win32.zip "chromedriver_win32.zip")
+
 * 将解压后的`chromedriver.exe`文件放在指定路径,例如`D:\Selenium\chromedriver.exe`路径下,将`D:\Selenium\`目录添加至环境变量`PATH`中
 
 #### Demo
@@ -72,6 +75,7 @@ from selenium.webdriver.support import expected_conditions as EC # available sin
 driver = webdriver.Chrome()
 # 打开指定页面
 driver.get("http://www.baidu.com")
+driver.
 # 将浏览器当前的标题打印出来
 print driver.title
 # 定位到页面中的具体元素,这里需要一点html的知识,或者直接浏览器切换到开发者模式查看xpath&cssselector
