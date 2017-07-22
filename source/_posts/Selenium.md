@@ -562,9 +562,11 @@ driver = webdriver.Firefox(profile)
 
 ```py
 from selenium.webdriver.common.action_chains import ActionChains
+# 要拖拽(drag)的元素
 element = driver.find_element_by_name("source")
+# 要释放位置的目标元素
 target =  driver.find_element_by_name("target")
-
+# 拖拽element元素至target元素所在的位置
 ActionChains(driver).drag_and_drop(element, target).perform()
 ```
 
