@@ -94,6 +94,6 @@ backup:
     # theme: next
     theme: hexo-theme-next
     repository:
+      github: git@github.com:liudongmeng/liudongmeng.github.io.git,backup
       # github: https://github.com/liudongmeng/liudongmeng.github.io,backup
-       github: git@github.com:liudongmeng/liudongmeng.github.io.git,backup
       #  gitcafe: git@github.com:xxx/xxx.git,branchName
