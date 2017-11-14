@@ -68,8 +68,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-# theme: landscape
-theme: next
+theme: hexo-theme-next
+# theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -91,7 +91,8 @@ disqus_shortname: sayonara-l
 # 备份md到git
 backup:
     type: git
-    theme: next
+    # theme: next
+    theme: hexo-theme-next
     repository:
       # github: https://github.com/liudongmeng/liudongmeng.github.io,backup
        github: git@github.com:liudongmeng/liudongmeng.github.io.git,backup
