@@ -91,7 +91,6 @@ disqus_shortname: sayonara-l
 # 备份md到git
 backup:
     type: git
-    theme: next
     repository:
       'git@github.com:liudongmeng/liudongmeng.github.io.git,backup'
       # github: https://github.com/liudongmeng/liudongmeng.github.io,backup
