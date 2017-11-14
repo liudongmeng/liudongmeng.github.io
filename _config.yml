@@ -93,6 +93,6 @@ backup:
     type: git
     theme: next
     repository:
-      git@github.com:liudongmeng/liudongmeng.github.io.git,backup
+      'git@github.com:liudongmeng/liudongmeng.github.io.git,backup'
       # github: https://github.com/liudongmeng/liudongmeng.github.io,backup
       #  gitcafe: git@github.com:xxx/xxx.git,branchName
