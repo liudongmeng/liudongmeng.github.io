@@ -12,7 +12,7 @@ category: [笔记,keras]
 现在需要把训练模型稍微改一下,数据从原来的0/1变成了一个一维数组,正好结合之前抄的代码理解一下keras的用法
 keras的使用方法大概就是下面这一段代码,建立模型,然后带入数据,models.fit(....)算就好了
 关于深度学习,真有能力从原始的数学原理开始推导肯定是最好的
-像我这种菜鸡,强烈推荐先把玩一下Google的[TensorFLowPlayground][TensorFLowPlayground]这个项目
+像我这种菜鸡,强烈推荐先把玩一下Google的[TensorFlowPlayground][TensorFlowPlayground]这个项目
 
 ```py
 from keras.models import Sequential
@@ -35,4 +35,9 @@ model.fit(data, labels, epochs=10, batch_size=32)
 这段代码其实就是一个完整的训练模型了,再略微思考思考吧,今天先简单写到这里.
 好久没有更新博客,其实也没太多营养,慢慢积累吧,说不定哪一天也有人能顺着我的文章和思路解决一些入门的问题呢?
 
-[TensorFLowPlayground]: http://playground.tensorflow.org/ "TensorFlow playground"
+这里记录一个地址[tensorflow-build][tensorflow-build],有编译后的TensorFlow包,据说是可以提速,用于生产环境,不过我在自己电脑上测试的性能也是有限...
+
+
+[TensorFlowPlayground]: http://playground.tensorflow.org/ "TensorFlow playground"
+
+[]tensorflow-build: https://github.com/lakshayg/tensorflow-build "tensorflow-build"
