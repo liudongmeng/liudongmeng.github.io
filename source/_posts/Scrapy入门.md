@@ -455,7 +455,6 @@ class QuotesSpider(scrapy.Spider):
 >You can learn more about [handling spider arguments here][spider-arguments].
 
 今天就到这里,消化一下.
-顺便说一句,我还是很不开心,呵呵
 
 [visualenv官网]: https://virtualenv.pypa.io "visualenv官网"
 [Scrapy官网]: https://scrapy.org/ "Scrapy官网"

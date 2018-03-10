@@ -31,10 +31,11 @@ tags: [python]
 `conda uninstall`:包删除命令
 说到这几个就不得不提镜像的问题了,[清华大学提供的Anaconda镜像][清华镜像],里面还提供了精简版的Anaconda安装包`Miniconda`.
 使用如下命令添加清华镜像源,并且设置生效,之后的下载速度就起飞了~
+后添加的channels会默认最高优先级,free channels中包的版本会比较旧,导致直接使用`conda install`命令无法安装期望版本的包,因此要先添加free,后添加main,或者不添加free
 
 ```sh
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
 conda config --set show_channel_urls yes
 ```
 
