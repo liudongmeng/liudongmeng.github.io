@@ -352,8 +352,6 @@
   
 
   
-    <div class="reading-progress-bar"></div>
-  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
@@ -452,6 +450,18 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/17/NLTK-自动化语义标注/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/04/17/NLTK-自动化语义标注/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -610,6 +620,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
 
   
 
@@ -938,8 +955,6 @@
 
 
 
-  
-
 
 
   
@@ -955,11 +970,6 @@
   
   
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/reading_progress/reading_progress.js"></script>
   
 
 
@@ -990,9 +1000,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://sayonara-l.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://liudongmeng.github.io/2017/04/17/NLTK-自动化语义标注/';
+        this.page.identifier = '2017/04/17/NLTK-自动化语义标注/';
+        this.page.title = 'NLTK-自动化语义标注';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://sayonara-l.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 
