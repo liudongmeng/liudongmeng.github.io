@@ -5,7 +5,7 @@
 # Site
 title: 沙扬娜拉呵呵
 subtitle: Sayonara
-description: 心情不好，持续走低，且行切低迷……
+description: 心情不好,持续走低,且行切低迷......
 author: 沙扬娜拉呵呵
 # landscape配置
 # language: zh-CN
@@ -35,7 +35,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: false # Transform title into titlecase
+titlecase: true # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
@@ -45,7 +45,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag

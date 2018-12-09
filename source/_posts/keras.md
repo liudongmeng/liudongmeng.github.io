@@ -40,4 +40,4 @@ model.fit(data, labels, epochs=10, batch_size=32)
 
 [TensorFlowPlayground]: http://playground.tensorflow.org/ "TensorFlow playground"
 
-[]tensorflow-build: https://github.com/lakshayg/tensorflow-build "tensorflow-build"
+[tensorflow-build]: https://github.com/lakshayg/tensorflow-build "tensorflow-build"
