@@ -125,14 +125,14 @@
 
   <meta name="description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记参考链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="yield">
+<meta property="og:title" content="Yield">
 <meta property="og:url" content="https://liudongmeng.github.io/2017/06/01/yield/index.html">
 <meta property="og:site_name" content="沙扬娜拉呵呵">
 <meta property="og:description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记参考链接">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-09-08T09:20:09.772Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yield">
+<meta name="twitter:title" content="Yield">
 <meta name="twitter:description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记参考链接">
 
 
@@ -152,7 +152,7 @@
   };
 </script>
 
-  <title>yield | 沙扬娜拉呵呵</title>
+  <title>Yield | 沙扬娜拉呵呵</title>
   
 
 
@@ -430,7 +430,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">yield
+          <h1 class="post-title" itemprop="name headline">Yield
               
             
           </h1>
@@ -522,7 +522,7 @@
 
           
           
-             <span id="/2017/06/01/yield/" class="leancloud_visitors" data-flag-title="yield">
+             <span id="/2017/06/01/yield/" class="leancloud_visitors" data-flag-title="Yield">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -557,7 +557,7 @@
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">feb</span><span class="params">(max)</span>:</span></span><br><span class="line">    n,a,b=<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a,b=b,a+b</span><br><span class="line">        n+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>以上就是一个生成斐波那契数列的方法了,调用方法就跟range一样</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = feb(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">5</span><br><span class="line">8</span><br><span class="line">13</span><br><span class="line">21</span><br><span class="line">34</span><br><span class="line">55</span><br><span class="line">89</span><br><span class="line">144</span><br><span class="line">233</span><br><span class="line">377</span><br><span class="line">610</span><br><span class="line">987</span><br><span class="line">1597</span><br><span class="line">2584</span><br><span class="line">4181</span><br><span class="line">6765</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">13</span></span><br><span class="line"><span class="number">21</span></span><br><span class="line"><span class="number">34</span></span><br><span class="line"><span class="number">55</span></span><br><span class="line"><span class="number">89</span></span><br><span class="line"><span class="number">144</span></span><br><span class="line"><span class="number">233</span></span><br><span class="line"><span class="number">377</span></span><br><span class="line"><span class="number">610</span></span><br><span class="line"><span class="number">987</span></span><br><span class="line"><span class="number">1597</span></span><br><span class="line"><span class="number">2584</span></span><br><span class="line"><span class="number">4181</span></span><br><span class="line"><span class="number">6765</span></span><br></pre></td></tr></table></figure>
 <p>简单地讲，yield 的作用就是把一个函数变成一个 generator，带有 yield 的函数不再是一个普通函数，Python 解释器会将其视为一个 generator，调用 fab(5) 不会执行 fab 函数，而是返回一个 iterable 对象！在 for 循环执行时，每次循环都会执行 fab 函数内部的代码，执行到 yield b 时，fab 函数就返回一个迭代值，下次迭代时，代码从 yield b 的下一条语句继续执行，而函数的本地变量看起来和上次中断执行前是完全一样的，于是函数继续执行，直到再次遇到 yield。</p>
 <p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
 <p>试了一下下面一段代码</p>
@@ -630,8 +630,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/01/Selenium/" rel="prev" title="selenium">
-                selenium <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/01/Selenium/" rel="prev" title="Selenium">
+                Selenium <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1062,7 +1062,7 @@
       var disqus_config = function () {
         this.page.url = 'https://liudongmeng.github.io/2017/06/01/yield/';
         this.page.identifier = '2017/06/01/yield/';
-        this.page.title = 'yield';
+        this.page.title = 'Yield';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');

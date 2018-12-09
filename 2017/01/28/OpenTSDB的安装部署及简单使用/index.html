@@ -555,7 +555,7 @@
 
       
         <p>部署流程，其实部署东西大都不难，呵呵。<br><a id="more"></a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先看官方文档，需要linux系统+Java Runtime+HBase+GnuPlot<br>linux系统不说了，java运行时是因为程序是用java编写的，HBase是最终的底层存储系统。GnuPlot其实不装也可以，只是web端绘图的时候要调用，没有不影响基础功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Runtime Requirements</span><br><span class="line">To actually run OpenTSDB, you&apos;ll need to meet the following:</span><br><span class="line"></span><br><span class="line">A Linux system (or Windows with manual building)</span><br><span class="line">Java Runtime Environment 1.6 or later</span><br><span class="line">HBase 0.92 or later</span><br><span class="line">GnuPlot 4.2 or later</span><br></pre></td></tr></table></figure></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>首先看官方文档，需要linux系统+Java Runtime+HBase+GnuPlot<br>linux系统不说了，java运行时是因为程序是用java编写的，HBase是最终的底层存储系统。GnuPlot其实不装也可以，只是web端绘图的时候要调用，没有不影响基础功能<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Runtime Requirements</span><br><span class="line"><span class="keyword">To</span> actually run OpenTSDB, you<span class="comment">'ll need to meet the following:</span></span><br><span class="line"></span><br><span class="line">A Linux system (<span class="keyword">or</span> Windows <span class="keyword">with</span> manual building)</span><br><span class="line">Java Runtime Environment <span class="number">1.6</span> <span class="keyword">or</span> later</span><br><span class="line">HBase <span class="number">0.92</span> <span class="keyword">or</span> later</span><br><span class="line">GnuPlot <span class="number">4.2</span> <span class="keyword">or</span> later</span><br></pre></td></tr></table></figure></p>
 <p>之前安装Hadoop的时候已经安装了jdk，设置了JAVA_HOME，所以这里从hbase开始</p>
 <h2 id="安装HBase"><a href="#安装HBase" class="headerlink" title="安装HBase"></a>安装HBase</h2><p>首先<a href="http://hbase.apache.org/" title="hbase.apache.org" target="_blank" rel="noopener">官网</a>下载程序包<code>hbase-1.2.4-bin.tar.gz</code>和md5校验文件<code>hbase-1.2.4-bin.tar.gz.mds</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> ssh hadoop@192.168.2.128</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/stable/hbase-1.2.4-bin.tar.gz</span><br><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/hbase/stable/hbase-1.2.4-bin.tar.gz.mds</span><br><span class="line">md5sum hbase-1.2.4-bin.tar.gz | tr <span class="string">'a-z'</span> <span class="string">'A-Z'</span> <span class="comment">#查看文件的md5值，检查文件是否完整</span></span><br></pre></td></tr></table></figure></p>
 <p>然后解压到<code>/usr/local/</code>路径<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hbase-1.2.4-bin.tar.gz</span><br><span class="line">su</span><br><span class="line">mv hbase-1.2.4 /usr/<span class="built_in">local</span>/hbase</span><br></pre></td></tr></table></figure></p>
@@ -563,7 +563,7 @@
 <p>修改环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="variable">$HBASE_HOME</span>=/usr/<span class="built_in">local</span>/hbase</span><br></pre></td></tr></table></figure></p>
 <p>启动<code>start-hbase.sh</code>,打开<a href="http://192.168.2.128:16010/" target="_blank" rel="noopener">http://192.168.2.128:16010/</a> 查看启动是否成功。能够打开web页面说明启动成功，暂时到此为止<br>zookeeper要通过hbase启动，如果手动打开了hbase则会报错</p>
 <hr>
-<h2 id="安装zookeeper"><a href="#安装zookeeper" class="headerlink" title="安装zookeeper"></a>安装zookeeper</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/stable/zookeeper-3.4.9.tar.gz</span><br><span class="line">tar -zxvf zookeeper-3.4.9.tar.gz</span><br><span class="line">mv zookeeper-3.4.9 /usr/local/zookeeper</span><br></pre></td></tr></table></figure>
+<h2 id="安装zookeeper"><a href="#安装zookeeper" class="headerlink" title="安装zookeeper"></a>安装zookeeper</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https:<span class="regexp">//mi</span>rrors.tuna.tsinghua.edu.cn<span class="regexp">/apache/</span>zookeeper<span class="regexp">/stable/</span>zookeeper-<span class="number">3.4</span>.<span class="number">9</span>.tar.gz</span><br><span class="line">tar -zxvf zookeeper-<span class="number">3.4</span>.<span class="number">9</span>.tar.gz</span><br><span class="line">mv zookeeper-<span class="number">3.4</span>.<span class="number">9</span> <span class="regexp">/usr/</span>local<span class="regexp">/zookeeper</span></span><br></pre></td></tr></table></figure>
 <p>创建配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp zoo_sample.cfg zoo.cfg</span><br></pre></td></tr></table></figure></p>
 <p>启动服务<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./bin/zkServer.sh start <span class="comment">#启动服务</span></span><br><span class="line">./bin/zkServer.sh stop <span class="comment">#停止服务</span></span><br></pre></td></tr></table></figure></p>
 <p>修改环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="variable">$ZK_HOME</span>=/usr/<span class="built_in">local</span>/zookeeper</span><br></pre></td></tr></table></figure></p>
@@ -629,8 +629,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/27/从头开始搭建hadoop环境/" rel="next" title="从头开始搭建hadoop环境">
-                <i class="fa fa-chevron-left"></i> 从头开始搭建hadoop环境
+              <a href="/2017/01/27/从头开始搭建hadoop环境/" rel="next" title="从头开始搭建Hadoop环境">
+                <i class="fa fa-chevron-left"></i> 从头开始搭建Hadoop环境
               </a>
             
           </div>
@@ -639,8 +639,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/09/robot-framework-selenium/" rel="prev" title="robot-framework+selenium">
-                robot-framework+selenium <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/09/robot-framework-selenium/" rel="prev" title="Robot-Framework+selenium">
+                Robot-Framework+selenium <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
