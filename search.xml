@@ -253,23 +253,6 @@
     </entry>
     
     <entry>
-      <title>2017-03-30</title>
-      <link href="/2017/03/30/2017-03-30/"/>
-      <url>/2017/03/30/2017-03-30/</url>
-      <content type="html"><![CDATA[<p>出门阴天，回家下雨<br><a id="more"></a><br>今天大概算是把Web端的login和index理的稍微有些清楚了，除了sidebar那个不靠谱的全屏……<br>于是开始不自量力的拆地图，上来就是个死结：Dojo和RequireJS都注册了define和require方法，加载到Dojo的时候直接会报错，呵呵，不顺利就不顺利吧，反正世界上也没有顺利的事情。<br>折腾了一会儿next，不知道是ss的问题还是github的问题，反正部署貌似不是很牢靠……烦</p>]]></content>
-      
-      <categories>
-          
-          <category> 日记 </category>
-          
-          <category> 吐槽 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    <entry>
       <title>Mac命令</title>
       <link href="/2017/03/09/Mac%E5%91%BD%E4%BB%A4/"/>
       <url>/2017/03/09/Mac%E5%91%BD%E4%BB%A4/</url>
@@ -356,23 +339,6 @@
             <tag> yarn </tag>
             
         </tags>
-      
-    </entry>
-    
-    <entry>
-      <title>Flume</title>
-      <link href="/2017/01/23/flume/"/>
-      <url>/2017/01/23/flume/</url>
-      <content type="html"><![CDATA[<p>最近上班状态特别不好……磨磨蹭蹭也算是搭了一下flume<br>source实验了telnet／rabbitmq／sqlserver／mysql<br>channel就是默认内存配置<br>sink配的是kafka，本来想着从rabbitmq里面把数据发出来就可以测试流处理了，发现反序列化也是个问题……</p><p>先留个位置，过两天回家没事了慢慢写吧，也是刚把新电脑上搭了几个环境，回去从头开始整理一下<br><a id="more"></a></p>]]></content>
-      
-      <categories>
-          
-          <category> 笔记 </category>
-          
-          <category> flume </category>
-          
-      </categories>
-      
       
     </entry>
     
