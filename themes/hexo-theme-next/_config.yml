@@ -354,7 +354,7 @@ codeblock:
     # Show text copy result
     show_result: true
     # Style: only 'flat' is currently available, leave it blank if you prefer default theme
-    style: "flat"
+    style:
 
 # Use icon instead of the symblo # to indicate the tag at the bottom of the post
 tag_icon: true
@@ -613,8 +613,8 @@ calendar:
 disqus:
   enable: true
   shortname: sayonara-l
-  count: true
-  lazyload: false
+  count: false
+  lazyload: true
 
 # DisqusJS
 # Alternative Disqus - Render comment component using Disqus API
@@ -709,7 +709,7 @@ gitalk:
 # Likely supports four looks, nine social networks, any button text
 # You are free to modify the text value and order of any network
 likely:
-  enable: true
+  enable: false
   look: normal # available values: normal, light, small, big
   networks:
     twitter: Tweet
@@ -735,14 +735,14 @@ needmoreshare2:
   postbottom:
     enable: true
     options:
-      iconStyle: box
+      iconStyle: default
       boxForm: horizontal
       position: bottomCenter
       networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
   float:
     enable: true
     options:
-      iconStyle: box
+      iconStyle: default
       boxForm: horizontal
       position: middleRight
       networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
@@ -817,7 +817,7 @@ leancloud_visitors:
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
-  security: true
+  security: false
   betterPerformance: true
 
 # Another tool to show number of visitors to each article.
@@ -1089,7 +1089,7 @@ vendors:
   # Example:
   # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-  fontawesome: #//cdn.bootcss.com/font-awesome/5.8.2/css/fontawesome.min.css
+  fontawesome: //cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css
 
   # Internal version: 2.10.4
   # See: https://www.algolia.com
