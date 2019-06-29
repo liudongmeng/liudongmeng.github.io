@@ -15,7 +15,7 @@ tags:
 数据集([下载地址][下载地址])的使用方式
 
 官网的例子是python2的,到python3一个是要把cPickle库换成pickle,然后就是`pickle.load(f, encoding='latin1')`
-```py
+```python
 import pickle
 import gzip
 import numpy
@@ -43,7 +43,7 @@ def load_dataset(fp):
 
 ## Lower API实现
 
-```py
+```python
 import tensorflow as tf
 from data_loader import load_dataset
 
@@ -91,7 +91,7 @@ print('epoch={0},accuracy={1:2f}'.format(i, acc))
 
 显而易见的是,keras的api实现实在是太简单了...
 
-```py
+```python
 import tensorflow as tf
 from data_loader import load_dataset
 
