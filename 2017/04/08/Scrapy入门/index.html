@@ -620,14 +620,14 @@
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2017/04/09/NLTK/" rel="bookmark">NLTK</a></div>
+      <div class="popular-posts-title"><a href="/2017/04/17/NLTK-自动化语义标注/" rel="bookmark">NLTK-自动化语义标注</a></div>
       
     </li>
   
     <li class="popular-posts-item">
       
       
-      <div class="popular-posts-title"><a href="/2017/04/17/NLTK-自动化语义标注/" rel="bookmark">NLTK-自动化语义标注</a></div>
+      <div class="popular-posts-title"><a href="/2017/04/09/NLTK/" rel="bookmark">NLTK</a></div>
       
     </li>
   
@@ -675,43 +675,6 @@
         
           
           <div class="social_share">
-            
-              <div>
-                
-
-<script src="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.js"></script>
-
-
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.css">
-
-
-  
-
-
-<div class="likely">
-	
- 	 	<div class="twitter">Tweet</div>
-	
- 	 	<div class="facebook">Share</div>
-	
- 	 	<div class="linkedin">Link</div>
-	
- 	 	<div class="gplus">Plus</div>
-	
- 	 	<div class="vkontakte">Share</div>
-	
- 	 	<div class="odnoklassniki">Class</div>
-	
- 	 	<div class="telegram">Send</div>
-	
- 	 	<div class="whatsapp">Send</div>
-	
- 	 	<div class="pinterest">Pin</div>
-	
-</div>
-
-              </div>
             
             
               <div id="needsharebutton-postbottom">
@@ -1604,9 +1567,14 @@
               })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })
@@ -1715,7 +1683,7 @@ if ($('body').find('pre.mermaid').length) {
     
       pbOptions = {};
       
-        pbOptions.iconStyle = "box";
+        pbOptions.iconStyle = "default";
       
         pbOptions.boxForm = "horizontal";
       
@@ -1728,7 +1696,7 @@ if ($('body').find('pre.mermaid').length) {
     
       flOptions = {};
       
-        flOptions.iconStyle = "box";
+        flOptions.iconStyle = "default";
       
         flOptions.boxForm = "horizontal";
       
