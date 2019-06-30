@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "hexo s --debug",
-    "drafts": "hexo s --debug --drafts"
+    "drafts": "hexo s --drafts --debug"
   },
   "hexo": {
     "version": "3.9.0"

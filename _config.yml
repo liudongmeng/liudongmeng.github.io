@@ -10,7 +10,7 @@ author: Hisashiburidane
 # landscape配置
 # language: zh-CN
 # next配置
-language: zh-Hans
+language: zh-CN
 timezone:
 
 # URL
@@ -70,6 +70,13 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-next
 # theme: next
+
+# 文章字数统计
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
