@@ -115,16 +115,16 @@
 <meta name="keywords" content="python,spider,Scrapy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy入门">
-<meta property="og:url" content="https://liudongmeng.github.io/2017/04/08/Scrapy入门/index.html">
+<meta property="og:url" content="https://hisashiburidane.github.io/2017/04/08/Scrapy入门/index.html">
 <meta property="og:site_name" content="Hisashiburidane">
 <meta property="og:description" content="心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://liudongmeng.github.io/2017/04/08/Scrapy入门/scrapy_architecture_02.png">
-<meta property="og:updated_time" content="2018-09-08T09:20:09.767Z">
+<meta property="og:image" content="https://hisashiburidane.github.io/2017/04/08/Scrapy入门/scrapy_architecture_02.png">
+<meta property="og:updated_time" content="2020-03-15T12:38:13.146Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Scrapy入门">
 <meta name="twitter:description" content="心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
-<meta name="twitter:image" content="https://liudongmeng.github.io/2017/04/08/Scrapy入门/scrapy_architecture_02.png">
+<meta name="twitter:image" content="https://hisashiburidane.github.io/2017/04/08/Scrapy入门/scrapy_architecture_02.png">
 
 
 
@@ -134,7 +134,7 @@
 
   
   
-  <link rel="canonical" href="https://liudongmeng.github.io/2017/04/08/Scrapy入门/">
+  <link rel="canonical" href="https://hisashiburidane.github.io/2017/04/08/Scrapy入门/">
 
 
 
@@ -398,7 +398,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://liudongmeng.github.io/2017/04/08/Scrapy入门/">
+    <link itemprop="mainEntityOfPage" href="https://hisashiburidane.github.io/2017/04/08/Scrapy入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hisashiburidane">
@@ -456,7 +456,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-08 17:20:09" itemprop="dateModified" datetime="2018-09-08T17:20:09+08:00">2018-09-08</time>
+                <time title="修改时间：2020-03-15 20:38:13" itemprop="dateModified" datetime="2020-03-15T20:38:13+08:00">2020-03-15</time>
               </span>
             
           
@@ -528,7 +528,7 @@
         <p>心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光<br>这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个<a href="http://www.jianshu.com/p/d09778f4e055" title="彻底理解Python中的yield" target="_blank" rel="noopener">链接</a>mark一下</p>
 <a id="more"></a>
 <h1 id="最简单的爬网页"><a href="#最简单的爬网页" class="headerlink" title="最简单的爬网页"></a>最简单的爬网页</h1><p>先贴一段代码，简单的没什么好讲</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib2.urlopen(url)</span><br><span class="line">    html=page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line">url=<span class="string">"https://liudongmeng.github.io"</span></span><br><span class="line">html=getHtml(url)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span><span class="params">(url)</span>:</span></span><br><span class="line">    page = urllib2.urlopen(url)</span><br><span class="line">    html=page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line">url=<span class="string">"https://hisashiburidane.github.io"</span></span><br><span class="line">html=getHtml(url)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
 <h1 id="Scrapy"><a href="#Scrapy" class="headerlink" title="Scrapy"></a>Scrapy</h1><p>百度了一下接下来应该怎么做，无非先拉数据，然后使用正则或者其他手段把目标数据提取出来，之后要能自动翻页之类的，能够持续拉<br>说起来简单，获取网页内容只需要第一步那几行代码，然后就要仔细琢磨一下怎么做了，百度的结果是用<a href="https://scrapy.org/" title="Scrapy官网" target="_blank" rel="noopener">Scrapy</a>这个框架的比较多，先简单学习一下吧<br><img src="scrapy_architecture_02.png" alt="input"><br>看完文档又踩了好多坑……现在开始补充<br>顺着文档看下来，<code>pip install</code>按说应该很简单啊，可是OSX下面安装就是出了一堆问题，比如系统权限了，还有一个什么系统保护机制了，不能在usr和etc这种目录下装东西……看了一圈，一种解决办法是配置pip安装路径，装在当前用户的目录下，要改一堆配置文件<br>最后决定要采用的是<a href="https://virtualenv.pypa.io" title="visualenv官网" target="_blank" rel="noopener">virtualenv</a>，因为不用这么麻烦……<br>写在一起太乱了，放个链接<a href="/2017/04/08/python开发环境的一些配置/" title="python开发环境的一些配置">python开发环境的一些配置</a></p>
 <h2 id="Scrapy安装"><a href="#Scrapy安装" class="headerlink" title="Scrapy安装"></a>Scrapy安装</h2><p>搞定了虚拟环境，就可以开始安装配置Scrapy了</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建虚拟环境目录(?暂时这样叫吧)</span></span><br><span class="line">$ visualenv ENV</span><br><span class="line"><span class="comment"># 切换至虚拟环境</span></span><br><span class="line">$ <span class="built_in">source</span> ENV/bin/activate</span><br><span class="line"><span class="comment"># 退出虚拟环境</span></span><br><span class="line">$ deactivate</span><br><span class="line"><span class="comment"># pip安装</span></span><br><span class="line">$ pip install Scrapy</span><br><span class="line"><span class="comment"># 创建名为tutorial的scrapy项目</span></span><br><span class="line">$ scrapy startproject tutorial</span><br></pre></td></tr></table></figure>
@@ -938,7 +938,7 @@
                   
                     
                   
-                  <a href="https://github.com/liudongmeng" title="GitHub &rarr; https://github.com/liudongmeng" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/hisashiburidane" title="GitHub &rarr; https://github.com/hisashiburidane" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -1183,7 +1183,7 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "https://liudongmeng.github.io/2017/04/08/Scrapy入门/";
+    this.page.url = "https://hisashiburidane.github.io/2017/04/08/Scrapy入门/";
     this.page.identifier = "2017/04/08/Scrapy入门/";
     this.page.title = 'Scrapy入门';
     };
