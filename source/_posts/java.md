@@ -8,7 +8,7 @@ category: [笔记,OpenTSDB]
 
 #### *放个链接*
 
-[GitBlog](https://liudongmeng.github.io)
+[GitBlog](https://hisashiburidane.github.io)
 
 # 其实我就是先练习练习Markdown
 <!--more-->

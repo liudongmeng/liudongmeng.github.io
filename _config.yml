@@ -15,7 +15,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://liudongmeng.github.io
+url: https://hisashiburidane.github.io
 # url: localhost:4000
 root: /
 permalink: :year/:month/:day/:title/
@@ -82,7 +82,7 @@ post_wordcount:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/liudongmeng/liudongmeng.github.io
+  repo: https://github.com/hisashiburidane/hisashiburidane.github.io
   branch: master
 
 # Disqus
@@ -100,6 +100,6 @@ backup:
     type: git
     theme: hexo-theme-next
     repository:
-        github: git@github.com:liudongmeng/liudongmeng.github.io.git,backup
-      # github: https://github.com/liudongmeng/liudongmeng.github.io,backup
+        github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
+      # github: https://github.com/hisashiburidane/hisashiburidane.github.io,backup
       #  gitcafe: git@github.com:xxx/xxx.git,branchName

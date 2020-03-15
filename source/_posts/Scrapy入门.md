@@ -23,7 +23,7 @@ def getHtml(url):
     page = urllib2.urlopen(url)
     html=page.read()
     return html
-url="https://liudongmeng.github.io"
+url="https://hisashiburidane.github.io"
 html=getHtml(url)
 print(html)
 ```

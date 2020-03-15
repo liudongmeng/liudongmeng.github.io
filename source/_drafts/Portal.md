@@ -98,7 +98,7 @@ npm配置文件,这里主要体现在scripts里面,dev是我自己配的,表示�
     "type": "git",
     "url": "git@gitee.com:sayonara.ldm/webpack.git"
   },
-  "author": "liudongmeng",
+  "author": "hisashiburidane",
   "license": "ISC",
   "devDependencies": {
     "http-server": "^0.10.0",
