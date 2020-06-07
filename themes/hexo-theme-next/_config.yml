@@ -1221,6 +1221,4 @@ backup:
     type: git
     theme: hexo-theme-next
     repository:
-        github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
-      # github: https://github.com/hisashiburidane/hisashiburidane.github.io,backup
-      #  gitcafe: git@github.com:xxx/xxx.git,branchName
+      github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
