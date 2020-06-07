@@ -100,7 +100,7 @@ disqus_shortname: sayonara-l
 backup:
     type: git
     theme: hexo-theme-next
-    repository: 'git@github.com:hisashiburidane/hisashiburidane.github.io.git'
-    branch: backup
+    repository:
+      github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
       # github: https://github.com/hisashiburidane/hisashiburidane.github.io,backup
       #  gitcafe: git@github.com:xxx/xxx.git,branchName
