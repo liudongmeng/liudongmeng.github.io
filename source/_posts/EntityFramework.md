@@ -10,10 +10,11 @@ category:
 date: 2020-06-07 21:12:45
 ---
 
-
 ## 什么是 EntityFramework
 
 EntityFramework 是一款 ORM 框架(对象关系映射 Object Relational Mapping，简称 ORM），可以使.NET 开发人员能够使用特定领域的关系型数据。开发人员无需像往常一样编写大量的数据访问代码。
+
+<!-- more -->
 
 ## Quick Start
 
@@ -41,7 +42,8 @@ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 
 示例代码创建了一个简单的博客模型示例,包含了 Blog 和 Post 类的定义,以及 DbContext
 
-```c#
+```csharp
+
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -97,7 +99,7 @@ dotnet ef database update
 
 ### 调用数据库方法
 
-```c#
+```csharp
 using System;
 using EFGetStarted.Models;
 using System.Linq;
