@@ -1205,3 +1205,22 @@ vendors:
 css: css
 js: js
 images: images
+
+
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+  type: git
+  # repo: https://github.com/hisashiburidane/hisashiburidane.github.io
+  repo: git@github.com:Hisashiburidane/Hisashiburidane.github.io.git
+  branch: master
+
+# 备份md到git
+backup:
+    type: git
+    theme: hexo-theme-next
+    repository:
+        github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
+      # github: https://github.com/hisashiburidane/hisashiburidane.github.io,backup
+      #  gitcafe: git@github.com:xxx/xxx.git,branchName

@@ -82,7 +82,8 @@ post_wordcount:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/hisashiburidane/hisashiburidane.github.io
+  # repo: https://github.com/hisashiburidane/hisashiburidane.github.io
+  repo: git@github.com:Hisashiburidane/Hisashiburidane.github.io.git
   branch: master
 
 # Disqus
