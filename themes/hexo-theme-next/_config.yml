@@ -1215,10 +1215,3 @@ deploy:
   # repo: https://github.com/hisashiburidane/hisashiburidane.github.io
   repo: git@github.com:Hisashiburidane/Hisashiburidane.github.io.git
   branch: master
-
-# 备份md到git
-backup:
-    type: git
-    theme: hexo-theme-next
-    repository:
-      github: git@github.com:hisashiburidane/hisashiburidane.github.io.git,backup
