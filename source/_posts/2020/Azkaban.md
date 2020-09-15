@@ -105,3 +105,45 @@ Azkaban 独立服务器应该全部配置完成,通过监听默认端口`8081`�
 bin/shutdown-solo.sh
 ```
 
+## 编译问题
+
+Azkaban依赖于JavaFX中的包,但是由于OpenJDK默认没有包含,所以默认编译会报错
+
+### CentOS
+
+CentOS环境下,官方的源没有包含openjfx,可以选择手动编译安装,也可以选择安装Oracle JDK(默认包含JavaFX)
+
+### 安装OpenJFX
+
+Ubuntu系统下直接执行
+
+```zsh
+sudo apt-get install openjfx
+```
+
+### 添加maven镜像
+
+编译过程中gradle会去仓库中下载相关依赖,添加aliyun镜像仓库
+
+```gradle
+allprojects {
+  apply plugin: 'jacoco'
+
+  repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+    }
+    mavenLocal()
+    mavenCentral()
+  }
+}
+```
+
+### 时区
+
+Azkaban默认配置为美国/洛杉矶时区,与中国有15个小时的时差,改为亚洲/上海
+
+```properties
+# default.timezone.id=America/Los_Angeles
+default.timezone.id=Asia/Shanghai
+```
