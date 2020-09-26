@@ -4,11 +4,27 @@ date: 2017-04-30 16:05:21
 tags: [docker]
 category: [笔记,docker]
 ---
-地狱和天堂也许相距很遥远,可地狱和人间也许只有六个点的距离......
-心情瞬间就没那么低落了,抽空看一下[Docker][Docker]
+抽空看一下[Docker][Docker]
 <!--more-->
 
 ## 安装
+
+### CentOS
+
+```zsh
+#
+$ sudo yum install -y yum-utils
+#
+$ sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+# 安装相关工具
+$ sudo yum install docker-ce docker-ce-cli containerd.io
+# 启动docker服务
+$ systemctl start docker
+```
+
+### Ubuntu
 
 [官方文档][Part1]
 
