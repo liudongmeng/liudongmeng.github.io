@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="公司是想通过类似MySQL-&gt;Yelp-&gt;Kafka-&gt;Spark Streaming-&gt;OpenTSDB的结构搭一套框架,然后一步一步来吧每个部分单独实现接口肯定是没问题的,无非就是Java&#x2F;Python&#x2F;WebAPI或者其他接口封装一下,问题是怎么用最简单的方法把这一套串起来啃文档啃文档啃文档…linux&#x2F;java&#x2F;maven&#x2F;python&#x2F;english每一项都是弱项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SparkStreaming">
+<meta property="og:url" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/index.html">
+<meta property="og:site_name" content="Hisashiburi">
+<meta property="og:description" content="公司是想通过类似MySQL-&gt;Yelp-&gt;Kafka-&gt;Spark Streaming-&gt;OpenTSDB的结构搭一套框架,然后一步一步来吧每个部分单独实现接口肯定是没问题的,无非就是Java&#x2F;Python&#x2F;WebAPI或者其他接口封装一下,问题是怎么用最简单的方法把这一套串起来啃文档啃文档啃文档…linux&#x2F;java&#x2F;maven&#x2F;python&#x2F;english每一项都是弱项">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/python.png">
+<meta property="og:image" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/input.png">
+<meta property="og:image" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/output.png">
+<meta property="article:published_time" content="2017-01-12T14:45:21.000Z">
+<meta property="article:modified_time" content="2018-09-08T09:20:09.769Z">
+<meta property="article:author" content="Hisashiburi">
+<meta property="article:tag" content="Spark">
+<meta property="article:tag" content="Streaming">
+<meta property="article:tag" content="Spark Streaming">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/python.png">
+
+<link rel="canonical" href="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SparkStreaming | Hisashiburi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hisashiburi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好久不见</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">21</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">22</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">32</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hollow_knight.jpg">
+      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="description" content="努力,奋斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hisashiburi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SparkStreaming
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-01-12 22:45:21" itemprop="dateCreated datePublished" datetime="2017-01-12T22:45:21+08:00">2017-01-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-09-08 17:20:09" itemprop="dateModified" datetime="2018-09-08T17:20:09+08:00">2018-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/Spark/" itemprop="url" rel="index"><span itemprop="name">Spark</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/" itemprop="url" rel="index"><span itemprop="name">SparkStreaming</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>公司是想通过类似MySQL-&gt;Yelp-&gt;Kafka-&gt;Spark Streaming-&gt;OpenTSDB的结构搭一套框架,然后一步一步来吧<br>每个部分单独实现接口肯定是没问题的,无非就是Java/Python/WebAPI或者其他接口封装一下,问题是怎么用最简单的方法把这一套串起来<br>啃文档啃文档啃文档…<br>linux/java/maven/python/english每一项都是弱项,结果对文档的理解进度很慢…<br>花了三四天才用官方的example把kafka的数据直接接入了spark streaming<br>最近看的东西也是太多太散,本身自己其实只是根据文档做了个测试,命令都还记不住…整理一下吧<br><a id="more"></a></p>
+<h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><p><span class="exturl" data-url="aHR0cDovL3NwYXJrLmFwYWNoZS5vcmcvc3RyZWFtaW5nLw==" title="http://spark.apache.org/streaming/">官方网站<i class="fa fa-external-link"></i></span>下载最新的Pre-build版本，解压就可以直接跑了<br><span class="exturl" data-url="aHR0cDovL3NwYXJrLmFwYWNoZS5vcmcvZG93bmxvYWRzLmh0bWw=" title="http://spark.apache.org/downloads.html">下载页面<i class="fa fa-external-link"></i></span></p>
+<h1 id="源代码编译"><a href="#源代码编译" class="headerlink" title="源代码编译"></a>源代码编译</h1><p>这就不得不看一下maven的问题了<br>maven根据配置自动下依赖包的功能是很方便，然而GFW面前都是浮云，百度之后找到了<span class="exturl" data-url="aHR0cDovL21pcnJvcnMuYWxpeXVuLmNvbS8=" title="http://mirrors.aliyun.com/">淘宝镜像站<i class="fa fa-external-link"></i></span><br>修改<code>settings.xml</code>文件中的镜像<a href="./maven淘宝镜像配置" title="link">配置</a>即可<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="编译命令"><a href="#编译命令" class="headerlink" title="编译命令"></a>编译命令</h2><p>网上搜下来有两种，第一种是<code>./build/mvn</code><br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">build</span>/mvn -Pyarn -Phadoop-<span class="number">2</span>.<span class="number">7</span> -Dhadoop.version=<span class="number">2</span>.<span class="number">7</span>.<span class="number">0</span> -DskipTests clean package</span><br></pre></td></tr></table></figure></p>
+<p>然后一种是用脚本把编译后的项目打包出来<br>第一种做法看不懂怎么用,还是太多东西不懂,先用起来……所以这里采用第二种</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./make-distribution.sh --tgz --name <span class="number">2.7</span><span class="number">.0</span> -Pyarn -Phadoop<span class="number">-2.7</span> -Phive</span><br></pre></td></tr></table></figure>
+<p>先编了一次,提示有错误,生成文件<code>spark-[WARNING] The requested profile &quot;hive&quot; could not be activated because it does not exist.-bin-2.7.0.tgz</code>,大概是hive没有安装?参数去掉再编一次,生成成功</p>
+<p>然后根据官方的<span class="exturl" data-url="aHR0cDovL3NwYXJrLmFwYWNoZS5vcmcvZG9jcy9sYXRlc3Qvc3RyZWFtaW5nLXByb2dyYW1taW5nLWd1aWRlLmh0bWwjbGlua2luZw==" title="http://spark.apache.org/docs/latest/streaming-programming-guide.html#linking">LinkSection<i class="fa fa-external-link"></i></span>和自己的需要添加dependency,编译完成之后相关的依赖包也会打在生成的文件里面.<br>因为公司是要把kafka的数据直接接到spark streaming里面,这里我添加了kafka的依赖,其实后来想想自己到<span class="exturl" data-url="aHR0cDovL3NlYXJjaC5tYXZlbi5vcmcv" title="http://search.maven.org/">Maven repository<i class="fa fa-external-link"></i></span>上面手动搜包下载就好了…在这里浪费了很长时间</p>
+<h2 id="数据接入例子"><a href="#数据接入例子" class="headerlink" title="数据接入例子"></a>数据接入例子</h2><p>简单说一下我这次是怎么做的</p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><p>启动Kafka服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup bin&#x2F;kafka-server-start.sh config&#x2F;server.properties &amp;</span><br></pre></td></tr></table></figure><br>新建名为test的topic<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br></pre></td></tr></table></figure><br>启动kafka producer<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;kafka-console-producer.sh --broker-t localhost:9092 --topic test</span><br></pre></td></tr></table></figure><br>到这里kafka这边基本都好了</p>
+<h3 id="启动Spark-Streaming程序"><a href="#启动Spark-Streaming程序" class="headerlink" title="启动Spark Streaming程序"></a>启动Spark Streaming程序</h3><p>首先把需要用到的kafka包拷到Spark的路径下,然后找到官方的direct_kafka_wordcount.py文件,或者直接自己写一个<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Licensed to the Apache Software Foundation (ASF) under one or more</span></span><br><span class="line"><span class="comment"># contributor license agreements.  See the NOTICE file distributed with</span></span><br><span class="line"><span class="comment"># this work for additional information regarding copyright ownership.</span></span><br><span class="line"><span class="comment"># The ASF licenses this file to You under the Apache License, Version 2.0</span></span><br><span class="line"><span class="comment"># (the &quot;License&quot;); you may not use this file except in compliance with</span></span><br><span class="line"><span class="comment"># the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"># See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"># limitations under the License.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"> Counts words in UTF8 encoded, &#x27;\n&#x27; delimited text directly received from Kafka in every 2 seconds.</span></span><br><span class="line"><span class="string"> Usage: direct_kafka_wordcount.py &lt;broker_list&gt; &lt;topic&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> To run this on your local machine, you need to setup Kafka and create a producer first, see</span></span><br><span class="line"><span class="string"> http://kafka.apache.org/documentation.html#quickstart</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> and then run the example</span></span><br><span class="line"><span class="string">    `$ bin/spark-submit --jars \</span></span><br><span class="line"><span class="string">      external/kafka-assembly/target/scala-*/spark-streaming-kafka-assembly-*.jar \</span></span><br><span class="line"><span class="string">      examples/src/main/python/streaming/direct_kafka_wordcount.py \</span></span><br><span class="line"><span class="string">      localhost:9092 test`</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming <span class="keyword">import</span> StreamingContext</span><br><span class="line"><span class="keyword">from</span> pyspark.streaming.kafka <span class="keyword">import</span> KafkaUtils</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) != <span class="number">3</span>:</span><br><span class="line">        print(<span class="string">&quot;Usage: direct_kafka_wordcount.py &lt;broker_list&gt; &lt;topic&gt;&quot;</span>, file=sys.stderr)</span><br><span class="line">        exit(<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    sc = SparkContext(appName=<span class="string">&quot;PythonStreamingDirectKafkaWordCount&quot;</span>)</span><br><span class="line">    ssc = StreamingContext(sc, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    brokers, topic = sys.argv[<span class="number">1</span>:]</span><br><span class="line">    kvs = KafkaUtils.createDirectStream(ssc, [topic], &#123;<span class="string">&quot;metadata.broker.list&quot;</span>: brokers&#125;)</span><br><span class="line">    lines = kvs.map(<span class="keyword">lambda</span> x: x[<span class="number">1</span>])</span><br><span class="line">    counts = lines.flatMap(<span class="keyword">lambda</span> line: line.split(<span class="string">&quot; &quot;</span>)) \</span><br><span class="line">        .map(<span class="keyword">lambda</span> word: (word, <span class="number">1</span>)) \</span><br><span class="line">        .reduceByKey(<span class="keyword">lambda</span> a, b: a+b)</span><br><span class="line">    counts.pprint()</span><br><span class="line"></span><br><span class="line">    ssc.start()</span><br><span class="line">    ssc.awaitTermination()</span><br></pre></td></tr></table></figure></p>
+<p>然后就是执行下列命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin&#x2F;spark-submit --jars .&#x2F;external&#x2F;kafka-0-8-assembly&#x2F;target&#x2F;spark-streaming-kafka-0-8-assembly_2.11-2.1.0.jar direct_kafka_wordcount.py 192.168.0.106:9092 test</span><br></pre></td></tr></table></figure><br>这句很长,要确保引用的jar包路径正确无误,然后就是python代码文件路径正确,命令结构大概是<code>spark-submit --jars jarSource codeSource host:port topic</code>这样</p>
+<p>跑起来没有自动退出,就说明是命令正确可以被执行了,但是这里默认会输出大量的INFO日志,先修改一下日志的配置为WARN<br>切换到conf目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp log4j.properties.template log4j.properties</span><br><span class="line">vim log4j.properties #修改配置,重启服务即可</span><br></pre></td></tr></table></figure><br>重新执行,应该是像这样<br><img data-src="python.png" alt="python"><br>程序这就算是跑起来了,在生产者里面输入的数据会进入spark streaming进行处理,显示结果大概是这样<br>输入<br><img data-src="input.png" alt="input"><br>输出<br><img data-src="output.png" alt="output"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
+              <a href="/tags/Streaming/" rel="tag"><i class="fa fa-tag"></i> Streaming</a>
+              <a href="/tags/Spark-Streaming/" rel="tag"><i class="fa fa-tag"></i> Spark Streaming</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%AC%94%E8%AE%B0/maven/2017/01/14/maven%E6%B7%98%E5%AE%9D%E9%95%9C%E5%83%8F%E9%85%8D%E7%BD%AE/" rel="prev" title="Maven淘宝镜像配置">
+      <i class="fa fa-chevron-left"></i> Maven淘宝镜像配置
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E7%AC%94%E8%AE%B0/Hexo/2017/01/10/windows%E7%B3%BB%E7%BB%9F%E4%B8%8BHEXO%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E9%85%8D%E7%BD%AE/" rel="next" title="windows系统下Hexo的安装和配置">
+      windows系统下Hexo的安装和配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">源代码编译</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%91%BD%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">编译命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%A5%E5%85%A5%E4%BE%8B%E5%AD%90"><span class="nav-number">2.2.</span> <span class="nav-text">数据接入例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka"><span class="nav-number">2.2.1.</span> <span class="nav-text">Kafka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Spark-Streaming%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">启动Spark Streaming程序</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+      src="/images/hollow_knight.jpg">
+  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <div class="site-description" itemprop="description">努力,奋斗</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hpc2FzaGlidXJpZGFuZQ==" title="GitHub → https://github.com/hisashiburidane"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmh5ZHJhdW5pY29ybkBnbWFpbC5jb20=" title="E-Mail → mailto:hydraunicorn@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9ubHBmeGIuZ2l0aHViLmlvLw==" title="https://nlpfxb.github.io/">晓波·有钱人·🐶富贵·冯</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9hbW1leWpvaG4uZ2l0aHViLmlvLw==" title="https://ammeyjohn.github.io/">Patrick</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cDovL2thaW1pbmdoZS5jb20v" title="http://kaiminghe.com/">真·大神</span>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; some day – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-battery-1"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hisashiburidane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">120k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:30</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Spark/SparkStreaming/2017/01/12/SparkStreaming/";
+    this.page.identifier = "/笔记/Spark/SparkStreaming/2017/01/12/SparkStreaming/";
+    this.page.title = "SparkStreaming";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sayonara-l.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"position":"right","hOffset":0,"vOffset":0},"dialog":{"enable":true,"hitokoto":true},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

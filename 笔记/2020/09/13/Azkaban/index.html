@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Azkaban 是一款由领英创建,用于 Hadoop 任务场景的分布式批量工作流任务调度工具.Azkaban 解决了任务依赖循序的问题,并且提供了简单易用的 WebUI 接口,用于维护和跟踪您的工作流.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azkaban">
+<meta property="og:url" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/2020/09/13/Azkaban/index.html">
+<meta property="og:site_name" content="Hisashiburi">
+<meta property="og:description" content="Azkaban 是一款由领英创建,用于 Hadoop 任务场景的分布式批量工作流任务调度工具.Azkaban 解决了任务依赖循序的问题,并且提供了简单易用的 WebUI 接口,用于维护和跟踪您的工作流.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-13T12:11:12.000Z">
+<meta property="article:modified_time" content="2020-09-19T12:39:05.082Z">
+<meta property="article:author" content="Hisashiburi">
+<meta property="article:tag" content="Workflow">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/2020/09/13/Azkaban/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Azkaban | Hisashiburi</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hisashiburi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好久不见</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">21</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">22</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">32</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/2020/09/13/Azkaban/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/hollow_knight.jpg">
+      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="description" content="努力,奋斗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hisashiburi">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Azkaban
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-13 20:11:12" itemprop="dateCreated datePublished" datetime="2020-09-13T20:11:12+08:00">2020-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-19 20:39:05" itemprop="dateModified" datetime="2020-09-19T20:39:05+08:00">2020-09-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Azkaban 是一款由领英创建,用于 Hadoop 任务场景的分布式批量工作流任务调度工具.Azkaban 解决了任务依赖循序的问题,并且提供了简单易用的 WebUI 接口,用于维护和跟踪您的工作流.</p>
+<a id="more"></a>
+<p>Azkaban 具有以下特性</p>
+<ul>
+<li>适用于任意版本的 Hadoop</li>
+<li>简单易用的 WebUI</li>
+<li>便捷的基于 web/http 的工作流上传功能</li>
+<li>项目工作空间</li>
+<li>工作流调度</li>
+<li>模块化和插件化</li>
+<li>授权和认证</li>
+<li>追踪用户行为</li>
+<li>失败/成功的邮件提醒</li>
+<li>SLA 报警以及自动取消</li>
+<li>失败任务重试</li>
+</ul>
+<p>Azkaban 在设计时主要考虑到易用性.它在领英已经使用了一些年份,驱动了公司的很多 Hadoop 和数据仓库处理工作.</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>Azkaban 3.0 之后的版本提供两种模式:</p>
+<ol>
+<li><code>solo-server</code>模式,基于嵌入的<code>H2</code>数据库,web 服务器和执行服务器在同一个进程中运行,适用于学习研究场景,同样适用于小规模的用户案例.</li>
+<li>分布式多执行者(<code>distributed multiple-executor</code>)模式,基于主从模式的 MySQL 数据库,web 服务器和执行服务器分别在不同的服务器上运行,这样升级和维护工作将不会影响用户,多服务器的配置使得 Azkaban 系统具备了更高的鲁棒性和扩展能力.</li>
+</ol>
+<p>部署通常分为以下步骤:</p>
+<ul>
+<li>配置数据库</li>
+<li>配置用于多执行者的数据库</li>
+<li>下载并在数据中配置的每个执行者服务器上安装<code>Executor Server</code></li>
+<li>安装 Azkaban 插件</li>
+<li>安装 Web 服务</li>
+</ul>
+<p>下面将为大家介绍如何配置 Azkaban</p>
+<h2 id="从源码编译"><a href="#从源码编译" class="headerlink" title="从源码编译"></a>从源码编译</h2><p>Azkaban 的编译使用 Gradle 工具,需要 Java8 以上的版本</p>
+<p>在<code>*nix</code>设备上执行下列命令(例如 Linux/MacOS)</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Build Azkaben</span></span><br><span class="line">./gradlew build</span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean the build</span></span><br><span class="line">./gradlew clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build and install distributions</span></span><br><span class="line">./gradlew installDist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run tests</span></span><br><span class="line">./gradlew <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Build without running tests</span></span><br><span class="line">./gradlew build -x <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h3 id="Solo-Server入门"><a href="#Solo-Server入门" class="headerlink" title="Solo Server入门"></a><code>Solo Server</code>入门</h3><p>solo server 是 Azkaban 的单实例独立运行模式,有以下优势:</p>
+<ul>
+<li>易于安装,不需要 MySQL 实例,包含了 H2 作为主要的持久化存储</li>
+<li>易于装配,Web 服务器和执行服务器在同一个进程中运行</li>
+<li>包含全特性,包含了 Azkaban 的完整特性</li>
+</ul>
+<h4 id="安装Solo-Server"><a href="#安装Solo-Server" class="headerlink" title="安装Solo Server"></a>安装<code>Solo Server</code></h4><ul>
+<li>克隆仓库</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/azkaban/azkaban.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>构建并创建安装包</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> azkaban; ./gradlew build installDist</span><br></pre></td></tr></table></figure>
+<ul>
+<li>启动 solo server</li>
+</ul>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> azkaban-solo-server/build/install/azkaban-solo-server; bin/start-solo.sh</span><br></pre></td></tr></table></figure>
+<p>Azkaban 独立服务器应该全部配置完成,通过监听默认端口<code>8081</code>的方式接受网络请求.所以,打开浏览器检查<code>http://localhost:
+8081/</code>.默认的登录用户名密码在配置文件中<code>conf/azkaban.xml</code>配置.</p>
+<p>关闭服务</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/shutdown-solo.sh</span><br></pre></td></tr></table></figure>
+<h2 id="编译问题"><a href="#编译问题" class="headerlink" title="编译问题"></a>编译问题</h2><p>Azkaban依赖于JavaFX中的包,但是由于OpenJDK默认没有包含,所以默认编译会报错</p>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><p>CentOS环境下,官方的源没有包含openjfx,可以选择手动编译安装,也可以选择安装Oracle JDK(默认包含JavaFX)</p>
+<h3 id="安装OpenJFX"><a href="#安装OpenJFX" class="headerlink" title="安装OpenJFX"></a>安装OpenJFX</h3><p>Ubuntu系统下直接执行</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openjfx</span><br></pre></td></tr></table></figure>
+<h3 id="添加maven镜像"><a href="#添加maven镜像" class="headerlink" title="添加maven镜像"></a>添加maven镜像</h3><p>编译过程中gradle会去仓库中下载相关依赖,添加aliyun镜像仓库</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">  apply plugin: <span class="string">&#x27;jacoco&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">repositories</span> &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">        url <span class="string">&#x27;https://maven.aliyun.com/repository/public&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    mavenLocal()</span><br><span class="line">    mavenCentral()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h3><p>Azkaban默认配置为美国/洛杉矶时区,与中国有15个小时的时差,改为亚洲/上海</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># default.timezone.id=America/Los_Angeles</span></span><br><span class="line"><span class="meta">default.timezone.id</span>=<span class="string">Asia/Shanghai</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Workflow/" rel="tag"><i class="fa fa-tag"></i> Workflow</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/%E7%AC%94%E8%AE%B0/2020/09/13/Airflow/" rel="prev" title="Airflow">
+      <i class="fa fa-chevron-left"></i> Airflow
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/%E7%AC%94%E8%AE%B0/2020/06/07/EntityFramework/" rel="next" title="EntityFramework">
+      EntityFramework <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">从源码编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solo-Server%E5%85%A5%E9%97%A8"><span class="nav-number">2.1.</span> <span class="nav-text">Solo Server入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Solo-Server"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装Solo Server</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">编译问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85OpenJFX"><span class="nav-number">3.2.</span> <span class="nav-text">安装OpenJFX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0maven%E9%95%9C%E5%83%8F"><span class="nav-number">3.3.</span> <span class="nav-text">添加maven镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA"><span class="nav-number">3.4.</span> <span class="nav-text">时区</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+      src="/images/hollow_knight.jpg">
+  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <div class="site-description" itemprop="description">努力,奋斗</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hpc2FzaGlidXJpZGFuZQ==" title="GitHub → https://github.com/hisashiburidane"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmh5ZHJhdW5pY29ybkBnbWFpbC5jb20=" title="E-Mail → mailto:hydraunicorn@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9ubHBmeGIuZ2l0aHViLmlvLw==" title="https://nlpfxb.github.io/">晓波·有钱人·🐶富贵·冯</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9hbW1leWpvaG4uZ2l0aHViLmlvLw==" title="https://ammeyjohn.github.io/">Patrick</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cDovL2thaW1pbmdoZS5jb20v" title="http://kaiminghe.com/">真·大神</span>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; some day – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-battery-1"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hisashiburidane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">120k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:30</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/2020/09/13/Azkaban/";
+    this.page.identifier = "/笔记/2020/09/13/Azkaban/";
+    this.page.title = "Azkaban";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sayonara-l.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"position":"right","hOffset":0,"vOffset":0},"dialog":{"enable":true,"hitokoto":true},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>

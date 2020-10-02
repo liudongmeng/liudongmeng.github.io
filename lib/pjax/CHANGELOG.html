@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="0.2.8 - 2019-03-09 Fixed: Edge form support.(#178 - @robinnorth) Fixed: Removed keyup event listener for forms.(#184 - @BehindTheMath) Fixed: Bugs in evalScripts().(#186 - @BehindTheMath) Fixed: Handl">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hisashiburi">
+<meta property="og:url" content="https://hisashiburidane.github.io/lib/pjax/CHANGELOG.html">
+<meta property="og:site_name" content="Hisashiburi">
+<meta property="og:description" content="0.2.8 - 2019-03-09 Fixed: Edge form support.(#178 - @robinnorth) Fixed: Removed keyup event listener for forms.(#184 - @BehindTheMath) Fixed: Bugs in evalScripts().(#186 - @BehindTheMath) Fixed: Handl">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-02T14:19:55.360Z">
+<meta property="article:modified_time" content="2020-10-02T14:19:55.360Z">
+<meta property="article:author" content="Hisashiburi">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hisashiburidane.github.io/lib/pjax/CHANGELOG">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Hisashiburi
+</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hisashiburi</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好久不见</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">21</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">22</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">32</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+  
+  
+
+          <div class="content page posts-expand">
+            
+
+    
+    
+    
+    <div class="post-block" lang="zh-CN">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta">
+  
+  <ul class="breadcrumb">
+          
+            <li><a href="/lib/">LIB</a></li>
+            <li><a href="/lib/pjax/">PJAX</a></li>
+            <li>CHANGELOG</li>
+          
+  </ul>
+
+</div>
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+          <h1 id="0-2-8-2019-03-09"><a href="#0-2-8-2019-03-09" class="headerlink" title="0.2.8 - 2019-03-09"></a>0.2.8 - 2019-03-09</h1><ul>
+<li>Fixed: Edge form support.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE3OA==" title="https://github.com/MoOx/pjax/pull/178">#178<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: Removed keyup event listener for forms.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE4NA==" title="https://github.com/MoOx/pjax/pull/184">#184<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: Bugs in evalScripts().<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE4Ng==" title="https://github.com/MoOx/pjax/pull/186">#186<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: Handle non-string HTML passed to loadContent().<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzIwMA==" title="https://github.com/MoOx/pjax/pull/200">#200<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Tooling: Switch linting to ESLint and Prettier.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE5MQ==" title="https://github.com/MoOx/pjax/pull/191">#191<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+</ul>
+<h1 id="0-2-7-2018-08-15"><a href="#0-2-7-2018-08-15" class="headerlink" title="0.2.7 - 2018-08-15"></a>0.2.7 - 2018-08-15</h1><ul>
+<li>Fixed: Parsing values of option elements in forms.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE2Mg==" title="https://github.com/MoOx/pjax/pull/162">#162<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: Added index.d.ts to package.json so it will be installed by npm.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9jb21taXQvYzU4OWFiOWMyNWJlZTYxNjFiZjNlNTU3ZWFjYTQ0ZTUxYzE0ZmI4OQ==" title="https://github.com/MoOx/pjax/commit/c589ab9c25bee6161bf3e557eaca44e51c14fb89">c589ab9<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: <code>options.history</code> to correctly parse being set to false.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE2NQ==" title="https://github.com/MoOx/pjax/pull/165">#165<i class="fa fa-external-link"></i></span> - @BehindTheMath).</li>
+<li>Fixed: Pass the current <code>options</code> object to <code>loadContent()</code>.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE3MQ==" title="https://github.com/MoOx/pjax/pull/171">#171<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: Ensure correct XHR encoding for multipart/form-data forms<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE3NA==" title="https://github.com/MoOx/pjax/pull/174">#174<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: More documentation.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE2MA==" title="https://github.com/MoOx/pjax/pull/160">#160<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE3MQ==" title="https://github.com/MoOx/pjax/pull/171">#171<i class="fa fa-external-link"></i></span> - @robinnorth, @BehindTheMath)</li>
+</ul>
+<h1 id="0-2-6-2018-04-30"><a href="#0-2-6-2018-04-30" class="headerlink" title="0.2.6 - 2018-04-30"></a>0.2.6 - 2018-04-30</h1><ul>
+<li>Fixed: Form submission for GET requests.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEyOQ==" title="https://github.com/MoOx/pjax/pull/129">#129<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: Refactor <code>loadUrl()</code> to make manually calling simpler.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEzNA==" title="https://github.com/MoOx/pjax/pull/134">#134<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: Support multiple select fields in form submissions.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE0Nw==" title="https://github.com/MoOx/pjax/pull/147">#147<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: Use the same options object in <code>handle-response</code> as in <code>send-request</code>. This way, <code>pjax.state.options</code> will also have the request options.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE0OA==" title="https://github.com/MoOx/pjax/pull/148">#148<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: Move the XHR callback to a separate method, and trigger an error event if the response cannot be parsed.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEzNw==" title="https://github.com/MoOx/pjax/pull/137">#137<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: TypeScript definitions.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEzOA==" title="https://github.com/MoOx/pjax/pull/138">#138<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: <code>replaceNode</code> switch, as an alternative to the <code>outerHTML</code> switch.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE0MQ==" title="https://github.com/MoOx/pjax/pull/141">#141<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: <code>X-PJAX-Selectors</code> HTTP header. This is a serialized JSON array of selectors, taken from <code>options.selectors</code>. You can use this to send back only the elements that Pjax will use to switch, instead of sending the whole page.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE0NA==" title="https://github.com/MoOx/pjax/pull/144">#144<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: An option to use <code>FormData</code> to submit forms.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE1Mw==" title="https://github.com/MoOx/pjax/pull/153">#153<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: Tests.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9jb21taXQvZjk4ZjJkZDYzYjQ4MTEzZmY5MWI2YmQ4ODA4MjU3YmZjNzIzZWY2Yg==" title="https://github.com/MoOx/pjax/commit/f98f2dd63b48113ff91b6bd8808257bfc723ef6b">f98f2dd<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE0NQ==" title="https://github.com/MoOx/pjax/pull/145">#145<i class="fa fa-external-link"></i></span> - @robinnorth, @BehindTheMath)</li>
+</ul>
+<h1 id="0-2-5-2018-02-02"><a href="#0-2-5-2018-02-02" class="headerlink" title="0.2.5 - 2018-02-02"></a>0.2.5 - 2018-02-02</h1><ul>
+<li>Fixed: Async switch functions now work correctly, because the DOM is now parsed after all the switches finish.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzc5" title="https://github.com/MoOx/pjax/pull/79">#79<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExMA==" title="https://github.com/MoOx/pjax/pull/110">#110<i class="fa fa-external-link"></i></span> - @oskarrough, @BehindTheMath, @robinnorth)</li>
+<li>Fixed: Bug on IE11 preventing AJAX page refresh.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzgx" title="https://github.com/MoOx/pjax/pull/81">#81<i class="fa fa-external-link"></i></span> - @CPTechnikVX)</li>
+<li>Fixed: Default switches are now available as <code>Pjax.switches</code>.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzky" title="https://github.com/MoOx/pjax/pull/92">#92<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: An error that was caused by a missing <code>switchElementsAlt</code>.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzkz" title="https://github.com/MoOx/pjax/pull/93">#93<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEwNA==" title="https://github.com/MoOx/pjax/pull/104">#104<i class="fa fa-external-link"></i></span> - @BehindTheMath, @robinnorth)</li>
+<li>Fixed: Incorrect <code>main</code> field in npm package<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEwNQ==" title="https://github.com/MoOx/pjax/pull/105">#105<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: A pending XHR is now aborted if the user navigates somewhere else before the request is finished.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExNA==" title="https://github.com/MoOx/pjax/pull/114">#114<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Fixed: When rendering new content, focus will now be removed only from elements within one of the containers manipulated by Pjax.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExNg==" title="https://github.com/MoOx/pjax/pull/116">#116<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Fixed: Stop dispatching extraneous <code>pjax:complete</code> events when external scripts load<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExOA==" title="https://github.com/MoOx/pjax/pull/118">#118<i class="fa fa-external-link"></i></span> - @robinnorth)</li>
+<li>Added: Send the <code>X-PJAX</code> header with XHR requests.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzgw" title="https://github.com/MoOx/pjax/pull/80">#80<i class="fa fa-external-link"></i></span> - @bram1028)</li>
+<li>Added: Direct download link for script tags. (@MoOx)</li>
+<li>Added: Pass the element that triggered Pjax to the <code>pjax:send</code> event.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzk0" title="https://github.com/MoOx/pjax/pull/94">#94<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: An option to set a timeout for XHR requests.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzk1" title="https://github.com/MoOx/pjax/pull/95">#95<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: Checks for XHR redirects<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEwMQ==" title="https://github.com/MoOx/pjax/pull/101">#101<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: Save scroll position with history, and restore when navigating backwards or forwards.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExMA==" title="https://github.com/MoOx/pjax/pull/110">#110<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExOQ==" title="https://github.com/MoOx/pjax/pull/119">#119<i class="fa fa-external-link"></i></span> - @BehindTheMath, @robinnorth)</li>
+<li>Added: Scroll to element position when URL contains a hash<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExMA==" title="https://github.com/MoOx/pjax/pull/110">#110<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Added: Minified version of the Pjax bundle.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExNQ==" title="https://github.com/MoOx/pjax/pull/115">#115<i class="fa fa-external-link"></i></span> - @BehindTheMath)</li>
+<li>Changed: Miscellaneous code and tests cleanup.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzk2" title="https://github.com/MoOx/pjax/pull/96">#96<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzk4" title="https://github.com/MoOx/pjax/pull/98">#98<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzk5" title="https://github.com/MoOx/pjax/pull/99">#99<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEwNzA=" title="https://github.com/MoOx/pjax/pull/1070">#100<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEwNw==" title="https://github.com/MoOx/pjax/pull/107">#107<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzExMw==" title="https://github.com/MoOx/pjax/pull/113">#113<i class="fa fa-external-link"></i></span>, <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzEyMA==" title="https://github.com/MoOx/pjax/pull/120">#120<i class="fa fa-external-link"></i></span> - @BehindTheMath, @MoOx, @robinnorth)</li>
+</ul>
+<h1 id="0-2-4-2016-06-28"><a href="#0-2-4-2016-06-28" class="headerlink" title="0.2.4 - 2016-06-28"></a>0.2.4 - 2016-06-28</h1><ul>
+<li>Fixed: <code>refresh</code> should now work (use <code>this.parseDOM</code> for refresh)<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzY3" title="https://github.com/MoOx/pjax/pull/67">#67<i class="fa fa-external-link"></i></span> - @compressed)</li>
+<li>Fixed: Some attributes, such as <code>itemscope</code> have no corresponding value.<br>This change allows them to still be set.<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzY3" title="https://github.com/MoOx/pjax/pull/67">#67<i class="fa fa-external-link"></i></span> - @compressed)</li>
+<li>Added: <code>cacheBust</code> option<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzcx" title="https://github.com/MoOx/pjax/pull/71">#71<i class="fa fa-external-link"></i></span> - @tremby)</li>
+</ul>
+<h1 id="0-2-3-2016-03-24"><a href="#0-2-3-2016-03-24" class="headerlink" title="0.2.3 - 2016-03-24"></a>0.2.3 - 2016-03-24</h1><ul>
+<li>Fixed: <code>currentUrlFullReload</code> option now works</li>
+<li>Fixed: <code>this.reload</code> is now a Function<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9pc3N1ZXMvNjU=" title="https://github.com/MoOx/pjax/issues/65">#65<i class="fa fa-external-link"></i></span>)</li>
+</ul>
+<h1 id="0-2-2-2016-03-12"><a href="#0-2-2-2016-03-12" class="headerlink" title="0.2.2 - 2016-03-12"></a>0.2.2 - 2016-03-12</h1><ul>
+<li>Fixed: added back standalone version in <code>./pjax.js</code><br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9pc3N1ZXMvNTc=" title="https://github.com/MoOx/pjax/issues/57">#57<i class="fa fa-external-link"></i></span></li>
+<li>Fixed: error when using pjax with google analytics (<code>options</code> was undefined)<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzU5" title="https://github.com/MoOx/pjax/pull/59">#59<i class="fa fa-external-link"></i></span>)</li>
+<li>Fixed: HierarchyRequestError error<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzQ5" title="https://github.com/MoOx/pjax/pull/49">#49<i class="fa fa-external-link"></i></span>)</li>
+<li>Fixed: <code>TypeError: Pjax.forEachEls is not a function</code><br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzUy" title="https://github.com/MoOx/pjax/pull/52">#52<i class="fa fa-external-link"></i></span>)</li>
+<li>Fixed: <code>TypeError: Pjax.executeScripts is not a function</code><br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzUy" title="https://github.com/MoOx/pjax/pull/52">#52<i class="fa fa-external-link"></i></span>)</li>
+<li>Fixed: <code>TypeError: Pjax.clone is not a function</code><br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzUy" title="https://github.com/MoOx/pjax/pull/52">#52<i class="fa fa-external-link"></i></span>)</li>
+<li>Added: Ignore events with prevented defaults<br>(<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzUw" title="https://github.com/MoOx/pjax/pull/50">#50<i class="fa fa-external-link"></i></span>)</li>
+</ul>
+<h1 id="0-2-1-2015-02-04"><a href="#0-2-1-2015-02-04" class="headerlink" title="0.2.1 - 2015-02-04"></a>0.2.1 - 2015-02-04</h1><ul>
+<li>Fixed: it’s better when a release have actual files.</li>
+</ul>
+<h1 id="0-2-0-2015-02-04"><a href="#0-2-0-2015-02-04" class="headerlink" title="0.2.0 - 2015-02-04"></a>0.2.0 - 2015-02-04</h1><ul>
+<li>Fixed: prevent scrollTo from being converted from false to 0 (<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzMz" title="https://github.com/MoOx/pjax/pull/33">#33<i class="fa fa-external-link"></i></span>)</li>
+<li>Changed: code exploded in commonjs style</li>
+<li>Added: lots of tests</li>
+<li>Added: <code>refresh</code> method to force update a DOM element (<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzM2" title="https://github.com/MoOx/pjax/pull/36">#36<i class="fa fa-external-link"></i></span>)</li>
+</ul>
+<h1 id="0-1-4-2014-10-14"><a href="#0-1-4-2014-10-14" class="headerlink" title="0.1.4 - 2014-10-14"></a>0.1.4 - 2014-10-14</h1><ul>
+<li>Fixed: allow to load pages without any attributes on <code>&lt;html&gt;</code> element (fix <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9pc3N1ZXMvNg==" title="https://github.com/MoOx/pjax/issues/6">#6<i class="fa fa-external-link"></i></span>)</li>
+<li>Fixed: make <code>Pjax.switches.sideBySide</code> method usable (fix <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9pc3N1ZXMvMTM=" title="https://github.com/MoOx/pjax/issues/13">#13<i class="fa fa-external-link"></i></span>)</li>
+</ul>
+<h1 id="0-1-3-2014-09-16"><a href="#0-1-3-2014-09-16" class="headerlink" title="0.1.3 - 2014-09-16"></a>0.1.3 - 2014-09-16</h1><ul>
+<li>Fixed: clicking on the current url somewhere does not produce a full reload by default (see option <code>currentUrlFullReload</code>)</li>
+<li>Fixed: <code>document.implementation.createHTMLDocument</code> error (in IE10, ref <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vT3gvcGpheC9wdWxsLzE2" title="https://github.com/MoOx/pjax/pull/16">#16<i class="fa fa-external-link"></i></span>)</li>
+</ul>
+<h1 id="0-1-2-2014-04-03"><a href="#0-1-2-2014-04-03" class="headerlink" title="0.1.2 - 2014-04-03"></a>0.1.2 - 2014-04-03</h1><ul>
+<li>Changed: <code>pjax.js</code> relocated in <code>src/</code></li>
+<li>Fixed: <code>&lt;html&gt;</code> attributes of pjaxified document are now available</li>
+</ul>
+<h1 id="0-1-1-2014-04-02"><a href="#0-1-1-2014-04-02" class="headerlink" title="0.1.1 - 2014-04-02"></a>0.1.1 - 2014-04-02</h1><ul>
+<li>Fixed: safer UMD wrapper (fix concat issue)</li>
+</ul>
+<h1 id="0-1-0-2014-03-24"><a href="#0-1-0-2014-03-24" class="headerlink" title="0.1.0 - 2014-03-24"></a>0.1.0 - 2014-03-24</h1><p>✨ Initial release</p>
+
+      </div>
+      
+      
+      
+    </div>
+    
+  <ul class="breadcrumb">
+          
+            <li><a href="/lib/">LIB</a></li>
+            <li><a href="/lib/pjax/">PJAX</a></li>
+            <li>CHANGELOG</li>
+          
+  </ul>
+
+    
+    
+    
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-8-2019-03-09"><span class="nav-number">1.</span> <span class="nav-text">0.2.8 - 2019-03-09</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-7-2018-08-15"><span class="nav-number">2.</span> <span class="nav-text">0.2.7 - 2018-08-15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-6-2018-04-30"><span class="nav-number">3.</span> <span class="nav-text">0.2.6 - 2018-04-30</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-5-2018-02-02"><span class="nav-number">4.</span> <span class="nav-text">0.2.5 - 2018-02-02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-4-2016-06-28"><span class="nav-number">5.</span> <span class="nav-text">0.2.4 - 2016-06-28</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-3-2016-03-24"><span class="nav-number">6.</span> <span class="nav-text">0.2.3 - 2016-03-24</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-2-2016-03-12"><span class="nav-number">7.</span> <span class="nav-text">0.2.2 - 2016-03-12</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-1-2015-02-04"><span class="nav-number">8.</span> <span class="nav-text">0.2.1 - 2015-02-04</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-2-0-2015-02-04"><span class="nav-number">9.</span> <span class="nav-text">0.2.0 - 2015-02-04</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-4-2014-10-14"><span class="nav-number">10.</span> <span class="nav-text">0.1.4 - 2014-10-14</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-3-2014-09-16"><span class="nav-number">11.</span> <span class="nav-text">0.1.3 - 2014-09-16</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-2-2014-04-03"><span class="nav-number">12.</span> <span class="nav-text">0.1.2 - 2014-04-03</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-1-2014-04-02"><span class="nav-number">13.</span> <span class="nav-text">0.1.1 - 2014-04-02</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-0-2014-03-24"><span class="nav-number">14.</span> <span class="nav-text">0.1.0 - 2014-03-24</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+      src="/images/hollow_knight.jpg">
+  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <div class="site-description" itemprop="description">努力,奋斗</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2hpc2FzaGlidXJpZGFuZQ==" title="GitHub → https://github.com/hisashiburidane"><i class="fa fa-fw fa-github"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOmh5ZHJhdW5pY29ybkBnbWFpbC5jb20=" title="E-Mail → mailto:hydraunicorn@gmail.com"><i class="fa fa-fw fa-envelope"></i>E-Mail</span>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9ubHBmeGIuZ2l0aHViLmlvLw==" title="https://nlpfxb.github.io/">晓波·有钱人·🐶富贵·冯</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cHM6Ly9hbW1leWpvaG4uZ2l0aHViLmlvLw==" title="https://ammeyjohn.github.io/">Patrick</span>
+        </li>
+        <li class="links-of-blogroll-item">
+          <span class="exturl" data-url="aHR0cDovL2thaW1pbmdoZS5jb20v" title="http://kaiminghe.com/">真·大神</span>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; some day – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-battery-1"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hisashiburidane</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">120k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">2:30</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script data-pjax>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+<script data-pjax>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'forest',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://hisashiburidane.github.io/lib/pjax/CHANGELOG.html";
+    this.page.identifier = "lib/pjax/CHANGELOG.html";
+    this.page.title = "";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sayonara-l.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"superSample":2,"position":"right","hOffset":0,"vOffset":0},"dialog":{"enable":true,"hitokoto":true},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"log":false});</script></body>
+</html>
