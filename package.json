@@ -9,7 +9,8 @@
   "hexo": {
     "version": "3.9.0"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "hexo": "^3.9.0",
     "hexo-cli": "^1.1.0",
     "hexo-deployer-git": "^0.3.1",
@@ -27,12 +28,9 @@
     "hexo-renderer-jade": "^0.4.1",
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
-    "live2d-widget-model-hijiki": "^1.0.5",
-    "hexo-helper-live2d": "^3.1.1"
-  },
-  "devDependencies": {
     "hexo-server": "^0.3.3",
     "hexo-wordcount": "^2.0.1",
+    "hexo-helper-live2d": "^3.1.1",
     "highlight.js": "^10.2.0",
     "lodash": "^4.17.11",
     "uglify-js": "^3.6.0"
