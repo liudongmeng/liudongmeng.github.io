@@ -218,7 +218,7 @@ $ npm run build
 $ NODE_ENV=production pm2 start app.js
 ```
 
-<!-- {% post_link CentOS常见问题 Docker的安装 %} -->
+{% post_link CentOS常见问题 Docker的安装 %}
 
 [docker安装]: /2020/09/15/CentOS常见问题/#docker "CentOS常见问题#docker"
 [nodejs-latest-v8.x]: https://nodejs.org/dist/latest-v8.x/

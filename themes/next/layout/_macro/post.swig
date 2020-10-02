@@ -106,7 +106,6 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           {%- endif %}
-
           {%- if theme.firestore.enable %}
             <span class="post-meta-item" title="{{ __('post.views') }}">
               <span class="post-meta-item-icon">

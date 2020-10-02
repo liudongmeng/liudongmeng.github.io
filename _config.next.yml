@@ -33,7 +33,6 @@ custom_file_path:
   #mixin: source/_data/mixins.styl
   #style: source/_data/styles.styl
 
-
 # ---------------------------------------------------------------
 # Site Information Settings
 # See: https://theme-next.org/docs/getting-started/
@@ -104,7 +103,6 @@ scheme: Gemini
 # Dark Mode
 darkmode: false
 
-
 # ---------------------------------------------------------------
 # Menu Settings
 # ---------------------------------------------------------------
@@ -122,13 +120,12 @@ menu:
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
-  commonweal: /404/ || heartbeat
+  # commonweal: /404/ || heartbeat
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
   icons: true
   badges: true
-
 
 # ---------------------------------------------------------------
 # Sidebar Settings
@@ -219,12 +216,11 @@ toc:
 # A button to open designated chat widget in sidebar.
 # Firstly, you need enable the chat service you want to activate its sidebar button.
 chat:
-  enable: true
+  enable: false
   #service: chatra
   #service: tidio
   icon: comment # Icon name in Font Awesome, set false to disable icon.
   text: Chat # Button text, change it as you wish.
-
 
 # ---------------------------------------------------------------
 # Post Settings
@@ -247,12 +243,10 @@ post_meta:
     another_day: true
   categories: true
 
-# Post wordcount display settings
-# Dependencies: https://github.com/theme-next/hexo-symbols-count-time
 symbols_count_time:
   separated_meta: true
   item_text_post: true
-  item_text_total: false
+  item_text_total: true
 
 # Use icon instead of the symbol # to indicate the tag at the bottom of the post
 tag_icon: true
@@ -282,12 +276,12 @@ follow_me:
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
 related_posts:
-  enable: true
-  title: 相关阅读 # Custom header, leave empty to use the default one
+  enable: false # 插件bug无法使用
+  title: # Custom header, leave empty to use the default one
   display_in_home: false
   params:
     maxCount: 5
-    PPMixingRate: 1
+    PPMixingRate: 0
     # isDate: false
     # isImage: false
     # isExcerpt: false
@@ -302,7 +296,6 @@ post_edit:
 # Show previous post and next post in post footer if exists
 # Available values: left | right | false
 post_navigation: right
-
 
 # ---------------------------------------------------------------
 # Custom Page Settings
@@ -329,7 +322,6 @@ calendar:
   showDeleted: false
   singleEvents: true
   maxResults: 250
-
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -393,7 +385,6 @@ github_banner:
   permalink: https://github.com/hisashiburidane
   title: Follow me on GitHub
 
-
 # ---------------------------------------------------------------
 # Font Settings
 # See: https://theme-next.org/docs/theme-settings/#Fonts-Customization
@@ -444,8 +435,7 @@ font:
   # Font settings for <code> and code blocks.
   codes:
     external: true
-    family: 
-
+    family:
 
 # ---------------------------------------------------------------
 # SEO Settings
@@ -479,7 +469,6 @@ baidu_site_verification:
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
 baidu_push: false
-
 
 # ---------------------------------------------------------------
 # Third Party Plugins & Services Settings
@@ -554,7 +543,6 @@ quicklink:
   # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
   ignores:
 
-
 # ---------------------------------------------------------------
 # Comments Settings
 # See: https://theme-next.org/docs/third-party-services/comments
@@ -566,7 +554,7 @@ comments:
   style: tabs
   # Choose a comment system to be displayed by default.
   # Available values: changyan | disqus | disqusjs | gitalk | livere | valine
-  active: 
+  active:
   # Setting `true` means remembering the comment system selected by the visitor.
   storage: true
   # Lazyload all comment systems.
@@ -645,7 +633,6 @@ gitalk:
   # Available values: en | es-ES | fr | ru | zh-CN | zh-TW
   language:
 
-
 # ---------------------------------------------------------------
 # Post Widgets & Content Sharing Services
 # See: https://theme-next.org/docs/third-party-services/post-widgets
@@ -655,13 +642,12 @@ gitalk:
 # To get your ID visit https://widgetpack.com
 rating:
   enable: false
-  id:     # <app_id>
-  color:  fc6423
+  id: # <app_id>
+  color: fc6423
 
 # AddThis Share. See: https://www.addthis.com
 # Go to https://www.addthis.com/dashboard to customize your tools.
 add_this_id:
-
 
 # ---------------------------------------------------------------
 # Statistics and Analytics
@@ -693,7 +679,7 @@ leancloud_visitors:
   # app_id: 1YIwJodingrc40me9MEjtcVN-gzGzoHsz # <your app id>
   # app_key: 3soCSK6DKfVD7oRO7RAkbsfi # <your app key>
   # Required for apps from CN region
-  server_url: # <your server url>
+  server_url: https://www.leancloud.cn # <your server url>
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
@@ -718,7 +704,6 @@ busuanzi_count:
   total_views_icon: eye
   post_views: true
   post_views_icon: eye
-
 
 # ---------------------------------------------------------------
 # Search Services
@@ -753,7 +738,6 @@ local_search:
 # Swiftype Search API Key
 swiftype_key:
 
-
 # ---------------------------------------------------------------
 # Chat Services
 # See: https://theme-next.org/docs/third-party-services/chat-services
@@ -775,7 +759,6 @@ tidio:
   enable: false
   key: # Public Key, get it from dashboard. See: https://www.tidiochat.com/panel/settings/developer
 
-
 # ---------------------------------------------------------------
 # Tags Settings
 # See: https://theme-next.org/docs/tag-plugins/
@@ -788,7 +771,7 @@ note:
   #  - modern    bs-callout new (v2-v3) alert style.
   #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
   #  - disabled  disable all CSS styles import of note tag.
-  style: modern
+  style: flat
   icons: true
   # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
   # Offset also applied to label tag variables. This option can work with disabled note tag.
@@ -814,7 +797,6 @@ mermaid:
   enable: true
   # Available themes: default | dark | forest | neutral
   theme: forest
-
 
 # ---------------------------------------------------------------
 # Animation Settings
@@ -867,6 +849,14 @@ canvas_ribbon:
   alpha: 0.6 # The transparency of the ribbon
   zIndex: -1 # The display level of the ribbon
 
+canvas_nest:
+  #enable: false
+  enable: false
+  onmobile: false # Display on mobile or not
+  color: "0,0,255" # RGB values, use `,` to separate
+  opacity: 0.5 # The opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 33 # The number of lines
 
 #! ---------------------------------------------------------------
 #! DO NOT EDIT THE FOLLOWING SETTINGS
@@ -883,78 +873,78 @@ vendors:
 
   # Internal version: 3.1.0
   # anime: //cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
-  anime:
+  anime: https://cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js
 
   # Internal version: 4.7.0
   # fontawesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
-  fontawesome:
+  fontawesome: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
 
   # MathJax
   # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-  mathjax:
+  mathjax: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
   # KaTeX
   # katex: //cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
   # katex: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css
   # copy_tex_js: //cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js
   # copy_tex_css: //cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css
-  katex:
-  copy_tex_js:
-  copy_tex_css:
+  katex: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css
+  copy_tex_js: https://cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.js
+  copy_tex_css: https://cdn.jsdelivr.net/npm/katex@0/dist/contrib/copy-tex.min.css
 
   # Internal version: 0.2.8
   # pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
-  pjax:
+  pjax: https://cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
 
   # FancyBox
   # jquery: //cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
   # fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
   # fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
-  jquery:
-  fancybox:
-  fancybox_css:
+  jquery: https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js
+  fancybox: https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
+  fancybox_css: https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
 
   # Medium-zoom
   # mediumzoom: //cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js
-  mediumzoom:
+  mediumzoom: https://cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js
 
   # Lazyload
   # lazyload: //cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js
   # lazyload: //cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js
-  lazyload:
+  lazyload: https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.14.0/lozad.min.js
 
   # Pangu
   # pangu: //cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js
   # pangu: //cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
-  pangu:
+  pangu: https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js
 
   # Quicklink
   # quicklink: //cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
-  quicklink:
+  quicklink: https://cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js
 
   # DisqusJS
   # disqusjs_js: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js
   # disqusjs_css: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
-  disqusjs_js:
-  disqusjs_css:
+  disqusjs_js: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js
+  disqusjs_css: https://cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
 
   # Valine
   # valine: //cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js
   # valine: //cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js
-  valine:
+  valine: https://cdnjs.cloudflare.com/ajax/libs/valine/1.3.10/Valine.min.js
 
   # Gitalk
   # gitalk_js: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
   # gitalk_css: //cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css
-  gitalk_js:
-  gitalk_css:
+  gitalk_js: https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js
+  gitalk_css: https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css
 
   # Algolia Search
   # algolia_search: //cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
   # instant_search: //cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
-  algolia_search:
-  instant_search:
+  algolia_search: https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js
+  instant_search: https://cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js
 
   # Mermaid
   # mermaid: //cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js
