@@ -23,16 +23,16 @@
     var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
+  <meta name="description" content="做个爬虫试试吧，打发无聊时光 这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Scrapy入门">
 <meta property="og:url" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Scrapy/2017/04/08/Scrapy%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hisashiburi">
-<meta property="og:description" content="心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
+<meta property="og:description" content="做个爬虫试试吧，打发无聊时光 这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个链接mark一下">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/Scrapy/2017/04/08/Scrapy%E5%85%A5%E9%97%A8/scrapy_architecture_02.png">
 <meta property="article:published_time" content="2017-04-08T02:39:38.000Z">
-<meta property="article:modified_time" content="2020-10-02T16:24:13.587Z">
+<meta property="article:modified_time" content="2020-10-12T16:04:33.861Z">
 <meta property="article:author" content="Hisashiburi">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="spider">
@@ -139,7 +139,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">32</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">31</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -229,7 +229,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-10-03 00:24:13" itemprop="dateModified" datetime="2020-10-03T00:24:13+08:00">2020-10-03</time>
+                <time title="修改时间：2020-10-13 00:04:33" itemprop="dateModified" datetime="2020-10-13T00:04:33+08:00">2020-10-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,7 +270,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光<br>这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个<span class="exturl" data-url="aHR0cDovL3d3dy5qaWFuc2h1LmNvbS9wL2QwOTc3OGY0ZTA1NQ==" title="http://www.jianshu.com/p/d09778f4e055">链接<i class="fa fa-external-link"></i></span>mark一下</p>
+        <p>做个爬虫试试吧，打发无聊时光</p>
+<p>这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个<span class="exturl" data-url="aHR0cDovL3d3dy5qaWFuc2h1LmNvbS9wL2QwOTc3OGY0ZTA1NQ==" title="http://www.jianshu.com/p/d09778f4e055">链接<i class="fa fa-external-link"></i></span>mark一下</p>
 <a id="more"></a>
 <h1 id="最简单的爬网页"><a href="#最简单的爬网页" class="headerlink" title="最简单的爬网页"></a>最简单的爬网页</h1><p>先贴一段代码，简单的没什么好讲</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python2.7</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHtml</span>(<span class="params">url</span>):</span></span><br><span class="line">    page = urllib2.urlopen(url)</span><br><span class="line">    html=page.read()</span><br><span class="line">    <span class="keyword">return</span> html</span><br><span class="line">url=<span class="string">&quot;https://hisashiburidane.github.io&quot;</span></span><br><span class="line">html=getHtml(url)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
@@ -454,7 +455,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -529,13 +530,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">120k</span>
+    <span title="站点总字数">117k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:30</span>
+    <span title="站点阅读时长">2:26</span>
 </div>
   <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly90aGVtZS1uZXh0Lm9yZw==">NexT.Gemini</span> 强力驱动
   </div>
