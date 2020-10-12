@@ -4,7 +4,8 @@ date: 2017-04-08 10:39:38
 tags: ['python','spider',Scrapy]
 category: ['笔记','Scrapy']
 ---
-心比较乱，工作上也有很多东西要做，比较烦，领导之前说那个事情还没什么思路，先做个爬虫试试吧，打发无聊时光
+做个爬虫试试吧，打发无聊时光
+
 这里看到了yield关键字,python的东西还是不熟,百度了一下大概有个概念,慢慢研究,先放个[链接][yield]mark一下
 
 [yield]: http://www.jianshu.com/p/d09778f4e055 "彻底理解Python中的yield"
