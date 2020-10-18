@@ -198,7 +198,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hollow_knight.jpg">
-      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="努力,奋斗">
     </span>
 
@@ -265,14 +265,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>也说不上是手贱吧,反正是买了台低配MBP,有些东西还是要记一下的<br><a id="more"></a></p>
-<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><h2 id="允许从任意来源安装应用"><a href="#允许从任意来源安装应用" class="headerlink" title="允许从任意来源安装应用"></a>允许从任意来源安装应用</h2><p>允许从任何来源安装应用,有些软件包安装的时候权限不足会安装失败,需要用到,记得安装完毕回复</p>
+        <p>也说不上是手贱吧,反正是买了台低配MBP,有些东西还是要记一下的</p>
+<a id="more"></a>
+<h1 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h1>
+<h2 id="允许从任意来源安装应用"><a class="markdownIt-Anchor" href="#允许从任意来源安装应用"></a> 允许从任意来源安装应用</h2>
+<p>允许从任何来源安装应用,有些软件包安装的时候权限不足会安装失败,需要用到,记得安装完毕回复</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
-<h2 id="关闭system-integrity-protection"><a href="#关闭system-integrity-protection" class="headerlink" title="关闭system integrity protection"></a>关闭system integrity protection</h2><p>买了台显示器,分辨率默认不适配HiDPI,下了个软件也改不好,提示需要关闭System Intergrity Protection<br>重启电脑,按住command+R键进入恢复模式,调出终端<br>操作完了记得恢复,毕竟是系统保护功能</p>
+<h2 id="关闭system-integrity-protection"><a class="markdownIt-Anchor" href="#关闭system-integrity-protection"></a> 关闭system integrity protection</h2>
+<p>买了台显示器,分辨率默认不适配HiDPI,下了个软件也改不好,提示需要关闭System Intergrity Protection<br />
+重启电脑,按住command+R键进入恢复模式,调出终端<br />
+操作完了记得恢复,毕竟是系统保护功能</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭sip</span></span><br><span class="line">csrutil <span class="built_in">disable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开sip</span></span><br><span class="line">csrutil <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
-<h2 id="关于”xxxx-xx已被OS-X使用-无法打开”的问题"><a href="#关于”xxxx-xx已被OS-X使用-无法打开”的问题" class="headerlink" title="关于”xxxx.xx已被OS X使用,无法打开”的问题"></a>关于”xxxx.xx已被OS X使用,无法打开”的问题</h2><p>说道这里不得不感慨自己的贫穷,硬盘不够移动的来凑,装了个双系统来回倒腾,不知道怎么就会导致移动硬盘里面一些文件无法打开,<code>zip/rar</code>文件无法解压,百度很久有一个[方法][关于“xx.xx已被OS X使用，无法打开”的问题]可行…</p>
+<h2 id="关于xxxxxx已被os-x使用无法打开的问题"><a class="markdownIt-Anchor" href="#关于xxxxxx已被os-x使用无法打开的问题"></a> 关于&quot;xxxx.xx已被OS X使用,无法打开&quot;的问题</h2>
+<p>说道这里不得不感慨自己的贫穷,硬盘不够移动的来凑,装了个双系统来回倒腾,不知道怎么就会导致移动硬盘里面一些文件无法打开,<code>zip/rar</code>文件无法解压,百度很久有一个[方法][关于“xx.xx已被OS X使用，无法打开”的问题]可行…</p>
 <blockquote>
-<p>Mac电脑上的文件拷贝到移动硬盘，有时候会出现“xx.xx已被OS X使用，无法打开”的问题。<br>解决办法：</p>
+<p>Mac电脑上的文件拷贝到移动硬盘，有时候会出现“xx.xx已被OS X使用，无法打开”的问题。<br />
+解决办法：</p>
 <p>1、打开终端(或在Mac搜索里面输入Terminal);</p>
 <p>2、在终端里输入 xattr -l ，然后把出问题的文件拖动到 “xattr -l 后面”,回车；</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;Sayonara-MacBook-Pro:~ liudongmeng$ xattr -l</span><br><span class="line">&gt;Sayonara-MacBook-Pro:S1 liudongmeng$ xattr -l 1_1310389850k0Hh.zip</span><br></pre></td></tr></table></figure>
@@ -282,8 +290,12 @@
 <p>4、接下来，输入新的命令 xattr -d com.apple.FinderInfo 再把问题文件拖进去，问题就解决了</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;Sayonara-MacBook-Pro:S1 liudongmeng$ xattr -d com.apple.FinderInfo 1_1310389850k0Hh.zip</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><p>先空着,这个东西常用的用多了就记得了</p>
-<h1 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h1><p>[Awesome Mac][Awesome Mac]看起来不错,慢慢拉<br>[Awesome Mac]: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvYXdlc29tZS1tYWM=" title="https://github.com/jaywcjlove/awesome-mac">https://github.com/jaywcjlove/awesome-mac<i class="fa fa-external-link"></i></span> “Awesome Mac”<br>[关于“xx.xx已被OS X使用，无法打开”的问题]: <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veGl1NjE5NTQ0NTUzL3AvNTI3MDIwMC5odG1s" title="https://www.cnblogs.com/xiu619544553/p/5270200.html">https://www.cnblogs.com/xiu619544553/p/5270200.html<i class="fa fa-external-link"></i></span> “关于“xx.xx已被OS X使用，无法打开”的问题”</p>
+<h1 id="快捷键"><a class="markdownIt-Anchor" href="#快捷键"></a> 快捷键</h1>
+<p>先空着,这个东西常用的用多了就记得了</p>
+<h1 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h1>
+<p>[Awesome Mac][Awesome Mac]看起来不错,慢慢拉<br />
+[Awesome Mac]: <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2pheXdjamxvdmUvYXdlc29tZS1tYWM=" title="https://github.com/jaywcjlove/awesome-mac">https://github.com/jaywcjlove/awesome-mac<i class="fa fa-external-link"></i></span> “Awesome Mac”<br />
+[关于“xx.xx已被OS X使用，无法打开”的问题]: <span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20veGl1NjE5NTQ0NTUzL3AvNTI3MDIwMC5odG1s" title="https://www.cnblogs.com/xiu619544553/p/5270200.html">https://www.cnblogs.com/xiu619544553/p/5270200.html<i class="fa fa-external-link"></i></span> “关于“xx.xx已被OS X使用，无法打开”的问题”</p>
 
     </div>
 
@@ -371,15 +383,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%81%E8%AE%B8%E4%BB%8E%E4%BB%BB%E6%84%8F%E6%9D%A5%E6%BA%90%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">允许从任意来源安装应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADsystem-integrity-protection"><span class="nav-number">1.2.</span> <span class="nav-text">关闭system integrity protection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E2%80%9Dxxxx-xx%E5%B7%B2%E8%A2%ABOS-X%E4%BD%BF%E7%94%A8-%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E2%80%9D%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text">关于”xxxx.xx已被OS X使用,无法打开”的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">2.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">软件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text"> 命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%81%E8%AE%B8%E4%BB%8E%E4%BB%BB%E6%84%8F%E6%9D%A5%E6%BA%90%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text"> 允许从任意来源安装应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADsystem-integrity-protection"><span class="nav-number">1.2.</span> <span class="nav-text"> 关闭system integrity protection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Exxxxxx%E5%B7%B2%E8%A2%ABos-x%E4%BD%BF%E7%94%A8%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.3.</span> <span class="nav-text"> 关于&quot;xxxx.xx已被OS X使用,无法打开&quot;的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">2.</span> <span class="nav-text"> 快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text"> 软件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+    <img class="site-author-image" itemprop="image" alt="Author"
       src="/images/hollow_knight.jpg">
-  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">努力,奋斗</div>
 </div>
 <div class="site-state-wrap motion-element">

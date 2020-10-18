@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="放个链接GitBlog 其实我就是先练习练习Markdown">
+  <meta name="description" content="放个链接 GitBlog  其实我就是先练习练习Markdown">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java写入OpenTSDB">
 <meta property="og:url" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/OpenTSDB/2017/01/07/java/index.html">
 <meta property="og:site_name" content="Hisashiburi">
-<meta property="og:description" content="放个链接GitBlog 其实我就是先练习练习Markdown">
+<meta property="og:description" content="放个链接 GitBlog  其实我就是先练习练习Markdown">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-01-07T14:20:02.000Z">
 <meta property="article:modified_time" content="2020-10-02T11:15:01.033Z">
@@ -198,7 +198,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hollow_knight.jpg">
-      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="努力,奋斗">
     </span>
 
@@ -265,53 +265,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
-<h4 id="放个链接"><a href="#放个链接" class="headerlink" title="放个链接"></a><em>放个链接</em></h4><p><a href="https://hisashiburidane.github.io">GitBlog</a></p>
-<h1 id="其实我就是先练习练习Markdown"><a href="#其实我就是先练习练习Markdown" class="headerlink" title="其实我就是先练习练习Markdown"></a>其实我就是先练习练习Markdown</h1><a id="more"></a>
-<p>OpenTSDB用webapi还是觉得有点性能问题，试一下java api，写入成功，明天写个循环测一下性能<br>linux环境下java的编译还要多用用，还要改环境变量好麻烦……<br>还有几个问题需要翻一下源代码</p>
+        <hr />
+<h4 id="放个链接"><a class="markdownIt-Anchor" href="#放个链接"></a> <em>放个链接</em></h4>
+<p><a href="https://hisashiburidane.github.io">GitBlog</a></p>
+<h1 id="其实我就是先练习练习markdown"><a class="markdownIt-Anchor" href="#其实我就是先练习练习markdown"></a> 其实我就是先练习练习Markdown</h1>
+<a id="more"></a>
+<p>OpenTSDB用webapi还是觉得有点性能问题，试一下java api，写入成功，明天写个循环测一下性能<br />
+linux环境下java的编译还要多用用，还要改环境变量好麻烦……<br />
+还有几个问题需要翻一下源代码</p>
 <ol>
-<li>在服务器上localhost环境可以写入hbase，但是到其他机器上怎么调，配置文件应该是有体现，顺着构造函数往下看<br>这个问题已经解决了<br><code># 注意
-在winodws下的 C:\Windows\System32\drivers\etc\hosts文件中
-添加服务器端host与ip的映射关系
-如： 10.8.1.135 master</code></li>
-<li>之前webapi调用post数据的时候，数据长度超过限制之后会导致连接关闭，服务端报的是netty的错误，也要翻一下看能不能解决，毕竟webapi调起来比较简单，13k/s应该还远没到极限    <h2 id="修改环境变量"><a href="#修改环境变量" class="headerlink" title="修改环境变量"></a>修改环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
-<h2 id="内容修改"><a href="#内容修改" class="headerlink" title="内容修改"></a>内容修改</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export PROJECT_HOME&#x3D;~&#x2F;bo</span><br><span class="line">for loop in &#96;ls $PROJECT_HOME&#x2F;*.jar&#96;;do</span><br><span class="line">export CLASSPATH&#x3D;$&#123;loop&#125;:$&#123;CLASSPATH&#125;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-</li>
+<li>在服务器上localhost环境可以写入hbase，但是到其他机器上怎么调，配置文件应该是有体现，顺着构造函数往下看<br />
+这个问题已经解决了<br />
+<code># 注意 在winodws下的 C:\Windows\System32\drivers\etc\hosts文件中 添加服务器端host与ip的映射关系 如： 10.8.1.135 master</code></li>
+<li>之前webapi调用post数据的时候，数据长度超过限制之后会导致连接关闭，服务端报的是netty的错误，也要翻一下看能不能解决，毕竟webapi调起来比较简单，13k/s应该还远没到极限</li>
 </ol>
+<h2 id="修改环境变量"><a class="markdownIt-Anchor" href="#修改环境变量"></a> 修改环境变量</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="内容修改"><a class="markdownIt-Anchor" href="#内容修改"></a> 内容修改</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export PROJECT_HOME&#x3D;~&#x2F;bo</span><br><span class="line">for loop in &#96;ls $PROJECT_HOME&#x2F;*.jar&#96;;do</span><br><span class="line">export CLASSPATH&#x3D;$&#123;loop&#125;:$&#123;CLASSPATH&#125;</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>引用</p>
 </blockquote>
-<h2 id="调用addPoint代码"><a href="#调用addPoint代码" class="headerlink" title="调用addPoint代码"></a>调用addPoint代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> net.opentsdb.core.TSDB;</span><br><span class="line"><span class="keyword">import</span> net.opentsdb.utils.Config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">opentsdb</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                String path=<span class="string">&quot;opentsdb.conf&quot;</span>;</span><br><span class="line">                Config config=<span class="keyword">new</span> Config(path);</span><br><span class="line">                TSDB db= <span class="keyword">new</span> TSDB(config);</span><br><span class="line">                String metric= <span class="string">&quot;mysql.bytes_received&quot;</span>;</span><br><span class="line">                <span class="keyword">long</span> timeStamp =<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">long</span> value=<span class="number">1</span>;</span><br><span class="line">                Map&lt;String, String&gt; tags= <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">                hmap.put(<span class="string">&quot;host&quot;</span>, <span class="string">&quot;web04&quot;</span>);</span><br><span class="line">                db.addPoint(metric, timeStamp, value,tags);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过配置文件实例化对象<br><code>TSDB db= new TSDB(config);</code></p>
-<hr>
-<h2 id="编译-调用"><a href="#编译-调用" class="headerlink" title="编译/调用"></a>编译/调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac opentsdb.java</span><br><span class="line">java opentsdb</span><br></pre></td></tr></table></figure>
-<h2 id="实验一个表格，没有现成的，先放个例子，回头有的时候再做"><a href="#实验一个表格，没有现成的，先放个例子，回头有的时候再做" class="headerlink" title="实验一个表格，没有现成的，先放个例子，回头有的时候再做"></a>实验一个表格，没有现成的，先放个例子，回头有的时候再做</h2><blockquote>
-<table>
-<thead>
-<tr>
-<th>Tables</th>
-<th style="text-align:center">Are</th>
-<th style="text-align:right">Cool</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>col 3 is</td>
-<td style="text-align:center">right-aligned</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td>col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-<tr>
-<td>zebra stripes</td>
-<td style="text-align:center">are neat</td>
-<td style="text-align:right">$1</td>
-</tr>
-</tbody>
-</table>
+<h2 id="调用addpoint代码"><a class="markdownIt-Anchor" href="#调用addpoint代码"></a> 调用addPoint代码</h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> net.opentsdb.core.TSDB;</span><br><span class="line"><span class="keyword">import</span> net.opentsdb.utils.Config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">opentsdb</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                String path=<span class="string">&quot;opentsdb.conf&quot;</span>;</span><br><span class="line">                Config config=<span class="keyword">new</span> Config(path);</span><br><span class="line">                TSDB db= <span class="keyword">new</span> TSDB(config);</span><br><span class="line">                String metric= <span class="string">&quot;mysql.bytes_received&quot;</span>;</span><br><span class="line">                <span class="keyword">long</span> timeStamp =<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">long</span> value=<span class="number">1</span>;</span><br><span class="line">                Map&lt;String, String&gt; tags= <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">                hmap.put(<span class="string">&quot;host&quot;</span>, <span class="string">&quot;web04&quot;</span>);</span><br><span class="line">                db.addPoint(metric, timeStamp, value,tags);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过配置文件实例化对象<br />
+<code>TSDB db= new TSDB(config);</code></p>
+<hr />
+<h2 id="编译调用"><a class="markdownIt-Anchor" href="#编译调用"></a> 编译/调用</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac opentsdb.java</span><br><span class="line">java opentsdb</span><br></pre></td></tr></table></figure>
+<h2 id="实验一个表格没有现成的先放个例子回头有的时候再做"><a class="markdownIt-Anchor" href="#实验一个表格没有现成的先放个例子回头有的时候再做"></a> 实验一个表格，没有现成的，先放个例子，回头有的时候再做</h2>
+<blockquote>
+<p>| Tables        | Are           | Cool  |<br />
+| ------------- |:-------------😐 -----😐<br />
+| col 3 is      | right-aligned | $1600 |<br />
+| col 2 is      | centered      |   $12 |<br />
+| zebra stripes | are neat      |    $1 |</p>
 </blockquote>
 
     </div>
@@ -400,15 +388,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BE%E4%B8%AA%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">放个链接</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E5%AE%9E%E6%88%91%E5%B0%B1%E6%98%AF%E5%85%88%E7%BB%83%E4%B9%A0%E7%BB%83%E4%B9%A0Markdown"><span class="nav-number"></span> <span class="nav-text">其实我就是先练习练习Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number"></span> <span class="nav-text">修改环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E4%BF%AE%E6%94%B9"><span class="nav-number"></span> <span class="nav-text">内容修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8addPoint%E4%BB%A3%E7%A0%81"><span class="nav-number"></span> <span class="nav-text">调用addPoint代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-%E8%B0%83%E7%94%A8"><span class="nav-number"></span> <span class="nav-text">编译&#x2F;调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%B8%AA%E8%A1%A8%E6%A0%BC%EF%BC%8C%E6%B2%A1%E6%9C%89%E7%8E%B0%E6%88%90%E7%9A%84%EF%BC%8C%E5%85%88%E6%94%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%8C%E5%9B%9E%E5%A4%B4%E6%9C%89%E7%9A%84%E6%97%B6%E5%80%99%E5%86%8D%E5%81%9A"><span class="nav-number"></span> <span class="nav-text">实验一个表格，没有现成的，先放个例子，回头有的时候再做</span></a></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%BE%E4%B8%AA%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text"> 放个链接</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E5%AE%9E%E6%88%91%E5%B0%B1%E6%98%AF%E5%85%88%E7%BB%83%E4%B9%A0%E7%BB%83%E4%B9%A0markdown"><span class="nav-number"></span> <span class="nav-text"> 其实我就是先练习练习Markdown</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number"></span> <span class="nav-text"> 修改环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E4%BF%AE%E6%94%B9"><span class="nav-number"></span> <span class="nav-text"> 内容修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E7%94%A8addpoint%E4%BB%A3%E7%A0%81"><span class="nav-number"></span> <span class="nav-text"> 调用addPoint代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%B0%83%E7%94%A8"><span class="nav-number"></span> <span class="nav-text"> 编译&#x2F;调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E4%B8%80%E4%B8%AA%E8%A1%A8%E6%A0%BC%E6%B2%A1%E6%9C%89%E7%8E%B0%E6%88%90%E7%9A%84%E5%85%88%E6%94%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%9B%9E%E5%A4%B4%E6%9C%89%E7%9A%84%E6%97%B6%E5%80%99%E5%86%8D%E5%81%9A"><span class="nav-number"></span> <span class="nav-text"> 实验一个表格，没有现成的，先放个例子，回头有的时候再做</span></a></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+    <img class="site-author-image" itemprop="image" alt="Author"
       src="/images/hollow_knight.jpg">
-  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">努力,奋斗</div>
 </div>
 <div class="site-state-wrap motion-element">

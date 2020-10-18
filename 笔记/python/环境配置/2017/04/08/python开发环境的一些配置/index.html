@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下因为brew什么的没用过，所以参考的原文里面有一部分我没写进来，以后用到了再看">
+  <meta name="description" content="本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄 结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下 因为brew什么的没用过，所以参考的原文里面有一部分我没写进来，以后用到了再看">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python开发环境的一些配置">
 <meta property="og:url" content="https://hisashiburidane.github.io/%E7%AC%94%E8%AE%B0/python/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/2017/04/08/python%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hisashiburi">
-<meta property="og:description" content="本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下因为brew什么的没用过，所以参考的原文里面有一部分我没写进来，以后用到了再看">
+<meta property="og:description" content="本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄 结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下 因为brew什么的没用过，所以参考的原文里面有一部分我没写进来，以后用到了再看">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-04-08T08:44:27.000Z">
 <meta property="article:modified_time" content="2018-09-08T09:20:09.771Z">
@@ -199,7 +199,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hollow_knight.jpg">
-      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="努力,奋斗">
     </span>
 
@@ -270,17 +270,25 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄<br>结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下<br>因为brew什么的没用过，所以参考的<span class="exturl" data-url="aHR0cHM6Ly9oYXZlZS5tZS9tYWMvMjAxNC0wNS9pbmRpdmlkdWFsLXNjaGVtZS1mb3ItcGlwLmh0bWw=" title="https://havee.me/mac/2014-05/individual-scheme-for-pip.html">原文<i class="fa fa-external-link"></i></span>里面有一部分我没写进来，以后用到了再看<br><a id="more"></a></p>
-<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><p>下载pip文件<br><span class="exturl" data-url="aHR0cHM6Ly9ib290c3RyYXAucHlwYS5pby9nZXQtcGlwLnB5" title="https://bootstrap.pypa.io/get-pip.py">下载地址<i class="fa fa-external-link"></i></span><br>然后执行命令</p>
+        <p>本来只是想学习一下Scrapy怎么做爬虫，顺便爬点东西😄<br />
+结果发现之前想装robot framework的时候遇到的问题重现了……正好整理一下<br />
+因为brew什么的没用过，所以参考的<span class="exturl" data-url="aHR0cHM6Ly9oYXZlZS5tZS9tYWMvMjAxNC0wNS9pbmRpdmlkdWFsLXNjaGVtZS1mb3ItcGlwLmh0bWw=" title="https://havee.me/mac/2014-05/individual-scheme-for-pip.html">原文<i class="fa fa-external-link"></i></span>里面有一部分我没写进来，以后用到了再看</p>
+<a id="more"></a>
+<h1 id="安装模块"><a class="markdownIt-Anchor" href="#安装模块"></a> 安装模块</h1>
+<p>下载pip文件<br />
+<span class="exturl" data-url="aHR0cHM6Ly9ib290c3RyYXAucHlwYS5pby9nZXQtcGlwLnB5" title="https://bootstrap.pypa.io/get-pip.py">下载地址<i class="fa fa-external-link"></i></span><br />
+然后执行命令</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装pip,可能是需要管理员权限的</span></span><br><span class="line">$ sudo python get-pip.py</span><br><span class="line"><span class="comment"># 安装完pip之后安装virtualenv</span></span><br><span class="line">$ sudo pip install virtualenv</span><br><span class="line"><span class="comment"># 然后用virtualenv创建虚拟环境</span></span><br><span class="line">$ virtualenv ENV</span><br><span class="line"><span class="comment"># 切换至ENV路径后开启虚拟环境</span></span><br><span class="line">$ <span class="built_in">source</span> bin/activate</span><br><span class="line"><span class="comment"># To undo these changes to your path (and prompt), just run:</span></span><br><span class="line"><span class="comment"># 撤销改变?暂时不是很理解</span></span><br><span class="line">$ deactivate</span><br></pre></td></tr></table></figure>
 <p>之后就可以在虚拟环境里面为所欲为了吧，据说是和外部的python环境互不影响的，因为Mac操作系统的原因有一些包没有办法正常安装，我也不想去改系统权限，这个方案目前看起来不错</p>
-<h1 id="pip的User-Install"><a href="#pip的User-Install" class="headerlink" title="pip的User Install"></a>pip的User Install</h1><p>在使用pip安装包的时候加上user参数，可以避免因为mac系统安全性限制导致的一些安装失败，不过需要修改pip的配置和系统的环境变量，这里也记一下吧，难保会不会用到</p>
+<h1 id="pip的user-install"><a class="markdownIt-Anchor" href="#pip的user-install"></a> pip的User Install</h1>
+<p>在使用pip安装包的时候加上user参数，可以避免因为mac系统安全性限制导致的一些安装失败，不过需要修改pip的配置和系统的环境变量，这里也记一下吧，难保会不会用到</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python安装命令</span></span><br><span class="line">$ python setup.py install --user</span><br><span class="line"><span class="comment"># 或者下面的命令也可以</span></span><br><span class="line"><span class="comment"># python setup.py install --home=&lt;dir&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># pip也一样</span></span><br><span class="line">$ pip install package --user</span><br></pre></td></tr></table></figure>
 <p>但是这样安装的包因为不在系统默认的PATH中，装是可以装，但是不能用，需要改一下环境变量</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开配置文件，不存在的话新建一个</span></span><br><span class="line">$ vim ~/.bash_profile</span><br><span class="line"><span class="comment"># 添加如下的配置</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="variable">$HOME</span>/Library/Python/2.7/bin ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> PATH=<span class="variable">$HOME</span>/Library/Python/2.7/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment"># 应用环境变量的修改</span></span><br><span class="line">$ <span class="built_in">source</span> ~/.bash_profile</span><br></pre></td></tr></table></figure>
 <p>修改pip的配置文件</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建目录</span></span><br><span class="line">$ mkdir -p ~/.pip</span><br><span class="line"><span class="comment"># 看了一下touch是创建空文件的命令，用vim代替一样吧</span></span><br><span class="line">$ touch ~/.pip/pip.conf</span><br><span class="line"><span class="comment"># 编辑配置文件</span></span><br><span class="line">$ vim ~/.pip/pip.conf</span><br><span class="line"><span class="comment"># pip.conf文件添加如下配置</span></span><br><span class="line">[global]</span><br><span class="line">default-timeout = 60</span><br><span class="line">download-cache = ~/.pip/cache</span><br><span class="line">log-file = ~/.pip/pip.log</span><br><span class="line"></span><br><span class="line">[install]</span><br><span class="line"><span class="comment"># 这个地方可以配pip源，这个是豆瓣的，试了一下国内两个源，包都不全，尽量还是翻墙拿吧</span></span><br><span class="line"><span class="comment"># 注意需要在地址后加/simple</span></span><br><span class="line">index-url = http://pypi.douban.com/simple</span><br></pre></td></tr></table></figure>
-<h1 id="pip源地址"><a href="#pip源地址" class="headerlink" title="pip源地址"></a>pip源地址</h1><p>记录一下pip源的地址，万一以后用到了省的到处找</p>
+<h1 id="pip源地址"><a class="markdownIt-Anchor" href="#pip源地址"></a> pip源地址</h1>
+<p>记录一下pip源的地址，万一以后用到了省的到处找</p>
 <ul>
 <li>清华:<span class="exturl" data-url="aHR0cHM6Ly9weXBpLnR1bmEudHNpbmdodWEuZWR1LmNuLw==" title="https://pypi.tuna.tsinghua.edu.cn/">https://pypi.tuna.tsinghua.edu.cn/<i class="fa fa-external-link"></i></span></li>
 <li>豆瓣:<span class="exturl" data-url="aHR0cDovL3B5cGkuZG91YmFuLmNvbS8=" title="http://pypi.douban.com/">http://pypi.douban.com/<i class="fa fa-external-link"></i></span></li>
@@ -379,15 +387,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text">安装模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E7%9A%84User-Install"><span class="nav-number">2.</span> <span class="nav-text">pip的User Install</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E6%BA%90%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">pip源地址</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97"><span class="nav-number">1.</span> <span class="nav-text"> 安装模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E7%9A%84user-install"><span class="nav-number">2.</span> <span class="nav-text"> pip的User Install</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pip%E6%BA%90%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text"> pip源地址</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+    <img class="site-author-image" itemprop="image" alt="Author"
       src="/images/hollow_knight.jpg">
-  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">努力,奋斗</div>
 </div>
 <div class="site-state-wrap motion-element">

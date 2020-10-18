@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"hisashiburidane.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记参考链接">
+  <meta name="description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记 参考链接">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Yield">
 <meta property="og:url" content="https://hisashiburidane.github.io/python/yield/2017/06/01/yield/index.html">
 <meta property="og:site_name" content="Hisashiburi">
-<meta property="og:description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记参考链接">
+<meta property="og:description" content="yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记 参考链接">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2017-06-01T11:22:18.000Z">
 <meta property="article:modified_time" content="2018-09-08T09:20:09.772Z">
@@ -198,7 +198,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hollow_knight.jpg">
-      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="努力,奋斗">
     </span>
 
@@ -265,7 +265,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记<br><span class="exturl" data-url="aHR0cHM6Ly93d3cuaWJtLmNvbS9kZXZlbG9wZXJ3b3Jrcy9jbi9vcGVuc291cmNlL29zLWNuLXB5dGhvbi15aWVsZC8=" title="https://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/">参考链接<i class="fa fa-external-link"></i></span><br><a id="more"></a><br>按照我现在的理解,yield的作用就是返回一个可迭代的对象,用例子看一下吧</p>
+        <p>yield这个关键字是之前看爬虫框架的时候demo里面用到过的,当时心情也不好,没心思琢磨,今天突然看到一篇还不错的文章,感觉讲的够清楚,做个笔记<br />
+<span class="exturl" data-url="aHR0cHM6Ly93d3cuaWJtLmNvbS9kZXZlbG9wZXJ3b3Jrcy9jbi9vcGVuc291cmNlL29zLWNuLXB5dGhvbi15aWVsZC8=" title="https://www.ibm.com/developerworks/cn/opensource/os-cn-python-yield/">参考链接<i class="fa fa-external-link"></i></span></p>
+<a id="more"></a>
+<p>按照我现在的理解,yield的作用就是返回一个可迭代的对象,用例子看一下吧</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">feb</span>(<span class="params">max</span>):</span></span><br><span class="line">    n,a,b=<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a,b=b,a+b</span><br><span class="line">        n+=<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>以上就是一个生成斐波那契数列的方法了,调用方法就跟range一样</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = feb(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
@@ -274,7 +277,8 @@
 <p>一个带有 yield 的函数就是一个 generator，它和普通函数不同，生成一个 generator 看起来像函数调用，但不会执行任何函数代码，直到对其调用 next()（在 for 循环中会自动调用 next()）才开始执行。虽然执行流程仍按函数的流程执行，但每执行到一个 yield 语句就会中断，并返回一个迭代值，下次执行时从 yield 的下一个语句继续执行。看起来就好像一个函数在正常执行的过程中被 yield 中断了数次，每次中断都会通过 yield 返回当前的迭代值。</p>
 <p>试了一下下面一段代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span>():</span></span><br><span class="line">    print(<span class="string">&#x27;wenchuan&#x27;</span>)</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">5</span></span><br><span class="line">    print(<span class="string">&#x27;fighting&#x27;</span>)</span><br><span class="line">c=h()</span><br><span class="line">c.__next__()</span><br><span class="line"><span class="comment"># &gt;&gt;&gt; c.__next__()</span></span><br><span class="line"><span class="comment"># webchuan</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"><span class="comment"># &gt;&gt;&gt; c.__next__()</span></span><br><span class="line"><span class="comment"># fighting</span></span><br><span class="line"><span class="comment"># Traceback (most recent call last):</span></span><br><span class="line"><span class="comment">#   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span></span><br><span class="line"><span class="comment"># StopIteration</span></span><br></pre></td></tr></table></figure>
-<p>可以清晰的看到,执行第一次next()方法时,到yield就停止了,直到再次调用next(),打印出了fighting这个单词,然后抛出了迭代结束的异常<br>还有个send,慢慢消化,等我把selenium写完再回来补…</p>
+<p>可以清晰的看到,执行第一次next()方法时,到yield就停止了,直到再次调用next(),打印出了fighting这个单词,然后抛出了迭代结束的异常<br />
+还有个send,慢慢消化,等我把selenium写完再回来补…</p>
 <p>x.send()的作用是传递一个值给generator,可以根据值改变迭代器的状态</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">h</span>(<span class="params">max</span>):</span></span><br><span class="line">    n=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> n&lt;max:</span><br><span class="line">        x=(<span class="keyword">yield</span> n)</span><br><span class="line">        <span class="keyword">if</span> x <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            n=x</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            n+=<span class="number">1</span></span><br><span class="line">            </span><br><span class="line">x=h(<span class="number">1000</span>)</span><br><span class="line">x.__next__()</span><br><span class="line"><span class="number">0</span></span><br><span class="line">x.__next__()</span><br><span class="line"><span class="number">1</span></span><br><span class="line">......</span><br><span class="line">x.__next__()</span><br><span class="line"><span class="number">100</span></span><br><span class="line">x.send(<span class="number">500</span>)</span><br><span class="line"><span class="number">500</span></span><br><span class="line">x.__next__()</span><br><span class="line"><span class="number">501</span></span><br></pre></td></tr></table></figure>
 <p>基本搞清楚这个东西怎么用了,下一节</p>
@@ -370,9 +374,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+    <img class="site-author-image" itemprop="image" alt="Author"
       src="/images/hollow_knight.jpg">
-  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">努力,奋斗</div>
 </div>
 <div class="site-state-wrap motion-element">

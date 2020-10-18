@@ -236,7 +236,12 @@ NexT.utils = {
       // TOC item animation navigate.
       link.addEventListener('click', event => {
         event.preventDefault();
-        var target = document.getElementById(event.currentTarget.getAttribute('href').replace('#', ''));
+        // 解码字符串
+        var id = event.currentTarget.getAttribute('href').replace('#', '');
+        id = decodeURI(id);
+        // 获取页面元素
+        var target = document.getElementById(id);
+        // 计算滚动距离
         var offset = target.getBoundingClientRect().top + window.scrollY;
         window.anime({
           targets  : document.scrollingElement,
@@ -245,7 +250,8 @@ NexT.utils = {
           scrollTop: offset + 10
         });
       });
-      return document.getElementById(link.getAttribute('href').replace('#', ''));
+      // 查找目录元素用于切换高亮展示
+      return document.getElementById(decodeURI(link.getAttribute('href').replace('#', '')));
     });
 
     var tocElement = document.querySelector('.post-toc-wrap');

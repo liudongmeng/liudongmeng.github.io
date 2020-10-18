@@ -199,7 +199,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/hollow_knight.jpg">
-      <meta itemprop="name" content="Hisashiburi">
+      <meta itemprop="name" content="Author">
       <meta itemprop="description" content="努力,奋斗">
     </span>
 
@@ -279,7 +279,8 @@
 <li>失败任务重试</li>
 </ul>
 <p>Azkaban 在设计时主要考虑到易用性.它在领英已经使用了一些年份,驱动了公司的很多 Hadoop 和数据仓库处理工作.</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><p>Azkaban 3.0 之后的版本提供两种模式:</p>
+<h2 id="入门"><a class="markdownIt-Anchor" href="#入门"></a> 入门</h2>
+<p>Azkaban 3.0 之后的版本提供两种模式:</p>
 <ol>
 <li><code>solo-server</code>模式,基于嵌入的<code>H2</code>数据库,web 服务器和执行服务器在同一个进程中运行,适用于学习研究场景,同样适用于小规模的用户案例.</li>
 <li>分布式多执行者(<code>distributed multiple-executor</code>)模式,基于主从模式的 MySQL 数据库,web 服务器和执行服务器分别在不同的服务器上运行,这样升级和维护工作将不会影响用户,多服务器的配置使得 Azkaban 系统具备了更高的鲁棒性和扩展能力.</li>
@@ -293,16 +294,19 @@
 <li>安装 Web 服务</li>
 </ul>
 <p>下面将为大家介绍如何配置 Azkaban</p>
-<h2 id="从源码编译"><a href="#从源码编译" class="headerlink" title="从源码编译"></a>从源码编译</h2><p>Azkaban 的编译使用 Gradle 工具,需要 Java8 以上的版本</p>
+<h2 id="从源码编译"><a class="markdownIt-Anchor" href="#从源码编译"></a> 从源码编译</h2>
+<p>Azkaban 的编译使用 Gradle 工具,需要 Java8 以上的版本</p>
 <p>在<code>*nix</code>设备上执行下列命令(例如 Linux/MacOS)</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Build Azkaben</span></span><br><span class="line">./gradlew build</span><br><span class="line"></span><br><span class="line"><span class="comment"># Clean the build</span></span><br><span class="line">./gradlew clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># Build and install distributions</span></span><br><span class="line">./gradlew installDist</span><br><span class="line"></span><br><span class="line"><span class="comment"># Run tests</span></span><br><span class="line">./gradlew <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Build without running tests</span></span><br><span class="line">./gradlew build -x <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-<h3 id="Solo-Server入门"><a href="#Solo-Server入门" class="headerlink" title="Solo Server入门"></a><code>Solo Server</code>入门</h3><p>solo server 是 Azkaban 的单实例独立运行模式,有以下优势:</p>
+<h3 id="solo-server入门"><a class="markdownIt-Anchor" href="#solo-server入门"></a> <code>Solo Server</code>入门</h3>
+<p>solo server 是 Azkaban 的单实例独立运行模式,有以下优势:</p>
 <ul>
 <li>易于安装,不需要 MySQL 实例,包含了 H2 作为主要的持久化存储</li>
 <li>易于装配,Web 服务器和执行服务器在同一个进程中运行</li>
 <li>包含全特性,包含了 Azkaban 的完整特性</li>
 </ul>
-<h4 id="安装Solo-Server"><a href="#安装Solo-Server" class="headerlink" title="安装Solo Server"></a>安装<code>Solo Server</code></h4><ul>
+<h4 id="安装solo-server"><a class="markdownIt-Anchor" href="#安装solo-server"></a> 安装<code>Solo Server</code></h4>
+<ul>
 <li>克隆仓库</li>
 </ul>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/azkaban/azkaban.git</span><br></pre></td></tr></table></figure>
@@ -314,17 +318,21 @@
 <li>启动 solo server</li>
 </ul>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> azkaban-solo-server/build/install/azkaban-solo-server; bin/start-solo.sh</span><br></pre></td></tr></table></figure>
-<p>Azkaban 独立服务器应该全部配置完成,通过监听默认端口<code>8081</code>的方式接受网络请求.所以,打开浏览器检查<code>http://localhost:
-8081/</code>.默认的登录用户名密码在配置文件中<code>conf/azkaban.xml</code>配置.</p>
+<p>Azkaban 独立服务器应该全部配置完成,通过监听默认端口<code>8081</code>的方式接受网络请求.所以,打开浏览器检查<code>http://localhost: 8081/</code>.默认的登录用户名密码在配置文件中<code>conf/azkaban.xml</code>配置.</p>
 <p>关闭服务</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/shutdown-solo.sh</span><br></pre></td></tr></table></figure>
-<h2 id="编译问题"><a href="#编译问题" class="headerlink" title="编译问题"></a>编译问题</h2><p>Azkaban依赖于JavaFX中的包,但是由于OpenJDK默认没有包含,所以默认编译会报错</p>
-<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><p>CentOS环境下,官方的源没有包含openjfx,可以选择手动编译安装,也可以选择安装Oracle JDK(默认包含JavaFX)</p>
-<h3 id="安装OpenJFX"><a href="#安装OpenJFX" class="headerlink" title="安装OpenJFX"></a>安装OpenJFX</h3><p>Ubuntu系统下直接执行</p>
+<h2 id="编译问题"><a class="markdownIt-Anchor" href="#编译问题"></a> 编译问题</h2>
+<p>Azkaban依赖于JavaFX中的包,但是由于OpenJDK默认没有包含,所以默认编译会报错</p>
+<h3 id="centos"><a class="markdownIt-Anchor" href="#centos"></a> CentOS</h3>
+<p>CentOS环境下,官方的源没有包含openjfx,可以选择手动编译安装,也可以选择安装Oracle JDK(默认包含JavaFX)</p>
+<h3 id="安装openjfx"><a class="markdownIt-Anchor" href="#安装openjfx"></a> 安装OpenJFX</h3>
+<p>Ubuntu系统下直接执行</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openjfx</span><br></pre></td></tr></table></figure>
-<h3 id="添加maven镜像"><a href="#添加maven镜像" class="headerlink" title="添加maven镜像"></a>添加maven镜像</h3><p>编译过程中gradle会去仓库中下载相关依赖,添加aliyun镜像仓库</p>
+<h3 id="添加maven镜像"><a class="markdownIt-Anchor" href="#添加maven镜像"></a> 添加maven镜像</h3>
+<p>编译过程中gradle会去仓库中下载相关依赖,添加aliyun镜像仓库</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">  apply plugin: <span class="string">&#x27;jacoco&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">repositories</span> &#123;</span><br><span class="line">    maven &#123;</span><br><span class="line">        url <span class="string">&#x27;https://maven.aliyun.com/repository/public&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">    mavenLocal()</span><br><span class="line">    mavenCentral()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h3><p>Azkaban默认配置为美国/洛杉矶时区,与中国有15个小时的时差,改为亚洲/上海</p>
+<h3 id="时区"><a class="markdownIt-Anchor" href="#时区"></a> 时区</h3>
+<p>Azkaban默认配置为美国/洛杉矶时区,与中国有15个小时的时差,改为亚洲/上海</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># default.timezone.id=America/Los_Angeles</span></span><br><span class="line"><span class="meta">default.timezone.id</span>=<span class="string">Asia/Shanghai</span></span><br></pre></td></tr></table></figure>
     </div>
 
@@ -416,15 +424,15 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text">入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">从源码编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Solo-Server%E5%85%A5%E9%97%A8"><span class="nav-number">2.1.</span> <span class="nav-text">Solo Server入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Solo-Server"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装Solo Server</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">编译问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CentOS"><span class="nav-number">3.1.</span> <span class="nav-text">CentOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85OpenJFX"><span class="nav-number">3.2.</span> <span class="nav-text">安装OpenJFX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0maven%E9%95%9C%E5%83%8F"><span class="nav-number">3.3.</span> <span class="nav-text">添加maven镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA"><span class="nav-number">3.4.</span> <span class="nav-text">时区</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A5%E9%97%A8"><span class="nav-number">1.</span> <span class="nav-text"> 入门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text"> 从源码编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#solo-server%E5%85%A5%E9%97%A8"><span class="nav-number">2.1.</span> <span class="nav-text"> Solo Server入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85solo-server"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 安装Solo Server</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text"> 编译问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#centos"><span class="nav-number">3.1.</span> <span class="nav-text"> CentOS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85openjfx"><span class="nav-number">3.2.</span> <span class="nav-text"> 安装OpenJFX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0maven%E9%95%9C%E5%83%8F"><span class="nav-number">3.3.</span> <span class="nav-text"> 添加maven镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA"><span class="nav-number">3.4.</span> <span class="nav-text"> 时区</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Hisashiburi"
+    <img class="site-author-image" itemprop="image" alt="Author"
       src="/images/hollow_knight.jpg">
-  <p class="site-author-name" itemprop="name">Hisashiburi</p>
+  <p class="site-author-name" itemprop="name">Author</p>
   <div class="site-description" itemprop="description">努力,奋斗</div>
 </div>
 <div class="site-state-wrap motion-element">
